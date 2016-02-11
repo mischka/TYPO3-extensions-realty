@@ -119,7 +119,7 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	 * @return string HTML for the OpenImmo tab, will not be empty
 	 */
 	protected function createTab() {
-		$moduleToken = t3lib_formprotection_Factory::get()->generateToken('moduleCall', self::MODULE_NAME);
+		$moduleToken = \TYPO3\CMS\Core\FormProtection\FormProtectionFactory::get()->generateToken('moduleCall', self::MODULE_NAME);
 		return $this->doc->getTabMenu(
 			array('M' => self::MODULE_NAME, 'moduleToken' => $moduleToken, 'id' => $this->id),
 			'tab',

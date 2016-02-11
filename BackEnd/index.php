@@ -13,8 +13,8 @@
  */
 
 // This checks permissions and exits if the users has no permission for entry.
-$BE_USER->modAccess($MCONF, 1);
-$LANG->includeLLFile('EXT:realty/BackEnd/locallang.xml');
+$GLOBALS['BE_USER']->modAccess($MCONF, 1);
+$GLOBALS['LANG']->includeLLFile('EXT:realty/BackEnd/locallang.xml');
 
 /** @var tx_realty_BackEnd_Module $SOBE */
 $SOBE = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_realty_BackEnd_Module');
