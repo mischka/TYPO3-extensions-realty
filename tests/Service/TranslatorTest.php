@@ -24,7 +24,7 @@ class tx_realty_Service_TranslatorTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_translator instance to be tested
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @test

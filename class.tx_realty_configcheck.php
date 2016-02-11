@@ -220,7 +220,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkCommonFrontEndSettings() {
+	protected function checkCommonFrontEndSettings() {
 		$this->checkStaticIncluded();
 		$this->checkTemplateFile();
 		$this->checkSalutationMode();
@@ -239,7 +239,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 * @return bool TRUE if $viewPart is configured to become rendered, FALSE
 	 *                 otherwise
 	 */
-	private function isSingleViewPartToDisplay($viewPart) {
+	protected function isSingleViewPartToDisplay($viewPart) {
 		$configuredValues = GeneralUtility::trimExplode(
 			',',
 			$this->objectToCheck->getConfValueString('singleViewPartsToDisplay'),
@@ -254,7 +254,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkGoogleMaps() {
+	protected function checkGoogleMaps() {
 		$this->checkShowGoogleMaps();
 		if ($this->objectToCheck->getConfValueBoolean(
 			'showGoogleMaps', 's_googlemaps'
@@ -268,7 +268,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkWhatToDisplay() {
+	protected function checkWhatToDisplay() {
 		$this->checkIfSingleInSetNotEmpty(
 			'what_to_display',
 			TRUE,
@@ -296,7 +296,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkSingleViewPartsToDisplay() {
+	protected function checkSingleViewPartsToDisplay() {
 		$this->checkIfMultiInSetNotEmpty(
 			'singleViewPartsToDisplay',
 			TRUE,
@@ -339,7 +339,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkDateFormat() {
+	protected function checkDateFormat() {
 		$this->checkForNonEmptyString(
 			'dateFormat',
 			FALSE,
@@ -355,7 +355,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkImageSizeValuesForListView() {
+	protected function checkImageSizeValuesForListView() {
 		$imageSizeItems = array(
 			'listImageMaxX',
 			'listImageMaxY'
@@ -377,7 +377,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkImageSizeValuesForSingleView() {
+	protected function checkImageSizeValuesForSingleView() {
 		$imageSizeItems = array(
 			'singleImageMaxX',
 			'singleImageMaxY'
@@ -399,7 +399,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkFieldsInSingleViewTable() {
+	protected function checkFieldsInSingleViewTable() {
 		$this->checkIfMultiInSetNotEmpty(
 			'fieldsInSingleViewTable',
 			FALSE,
@@ -417,7 +417,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkFavoriteFieldsInSession() {
+	protected function checkFavoriteFieldsInSession() {
 		$this->checkIfMultiInSetOrEmpty(
 			'favoriteFieldsInSession',
 			FALSE,
@@ -436,7 +436,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkRequireLoginForSingleViewPage() {
+	protected function checkRequireLoginForSingleViewPage() {
 		$this->checkIfBoolean(
 			'requireLoginForSingleViewPage',
 			FALSE,
@@ -452,7 +452,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkLoginPid() {
+	protected function checkLoginPid() {
 		$this->checkIfSingleFePageNotEmpty(
 			'loginPID',
 			FALSE,
@@ -468,7 +468,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkShowContactPageLink() {
+	protected function checkShowContactPageLink() {
 		$this->checkIfBoolean(
 			'showContactPageLink',
 			TRUE,
@@ -484,7 +484,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkContactPid() {
+	protected function checkContactPid() {
 		$this->checkIfSingleFePageNotEmpty(
 			'contactPID',
 			FALSE,
@@ -500,7 +500,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkDisplayedSearchWidgetFields() {
+	protected function checkDisplayedSearchWidgetFields() {
 		$this->checkIfMultiInSetNotEmpty(
 			'displayedSearchWidgetFields',
 			TRUE,
@@ -520,7 +520,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkPriceRangesForFilterForm() {
+	protected function checkPriceRangesForFilterForm() {
 		$displayedWidgetFields = GeneralUtility::trimExplode(
 			',',
 			$this->objectToCheck->getConfValueString(
@@ -549,7 +549,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkPagesToDisplay() {
+	protected function checkPagesToDisplay() {
 		$this->checkIfPidListNotEmpty(
 			'pages',
 			TRUE,
@@ -565,7 +565,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkRecursive() {
+	protected function checkRecursive() {
 		$this->checkIfPositiveIntegerOrZero(
 			'recursive',
 			TRUE,
@@ -584,7 +584,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkObjectsByOwnerPid($mayBeEmpty = TRUE) {
+	protected function checkObjectsByOwnerPid($mayBeEmpty = TRUE) {
 		if ($mayBeEmpty) {
 			$checkFunction = 'checkIfSingleFePageOrEmpty';
 			$errorText = 'This value specifies the page ID of the list of ' .
@@ -608,7 +608,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkUserGroupsForOffererList() {
+	protected function checkUserGroupsForOffererList() {
 		$this->checkIfPidListOrEmpty(
 			'userGroupsForOffererList',
 			TRUE,
@@ -627,7 +627,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkDisplayedContactInformation($mayBeEmpty = TRUE) {
+	protected function checkDisplayedContactInformation($mayBeEmpty = TRUE) {
 		if ($mayBeEmpty) {
 			$checkFunction = 'checkIfMultiInSetOrEmpty';
 		} else {
@@ -653,7 +653,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkDisplayedContactInformationSpecial() {
+	protected function checkDisplayedContactInformationSpecial() {
 		$this->checkIfMultiInSetOrEmpty(
 			'displayedContactInformationSpecial',
 			TRUE,
@@ -676,7 +676,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkGroupsWithSpeciallyDisplayedContactInformation() {
+	protected function checkGroupsWithSpeciallyDisplayedContactInformation() {
 		// checkIfPidListOrEmpty checks for a comma-separated list of integers
 		$this->checkIfPidListOrEmpty(
 			'groupsWithSpeciallyDisplayedContactInformation',
@@ -694,7 +694,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkDefaultContactEmail() {
+	protected function checkDefaultContactEmail() {
 		$this->checkIsValidEmailNotEmpty(
 			'defaultContactEmail',
 			TRUE,
@@ -712,7 +712,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkBlindCarbonCopyAddress() {
+	protected function checkBlindCarbonCopyAddress() {
 		$this->checkIsValidEmailOrEmpty(
 			'blindCarbonCopyAddress',
 			TRUE,
@@ -728,7 +728,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkVisibleContactFormFields() {
+	protected function checkVisibleContactFormFields() {
 		$this->checkIfMultiInSetOrEmpty(
 			'visibleContactFormFields',
 			TRUE,
@@ -748,7 +748,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return bool TRUE if the "terms" checkbox is visible, FALSE otherwise
 	 */
-	private function hasTermsInContactForm() {
+	protected function hasTermsInContactForm() {
 		$visibleFormFields = GeneralUtility::trimExplode(
 			',',
 			$this->objectToCheck->getConfValueString(
@@ -765,7 +765,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkRequiredContactFormFields() {
+	protected function checkRequiredContactFormFields() {
 		$this->checkIfMultiInSetOrEmpty(
 			'requiredContactFormFields',
 			TRUE,
@@ -808,7 +808,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkTermsPid() {
+	protected function checkTermsPid() {
 		$this->checkIfSingleFePageNotEmpty(
 			'termsPID',
 			TRUE,
@@ -824,7 +824,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkCheckboxesFilter() {
+	protected function checkCheckboxesFilter() {
 		$this->checkIfSingleInTableOrEmpty(
 			'checkboxesFilter',
 			TRUE,
@@ -841,7 +841,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkOrderBy() {
+	protected function checkOrderBy() {
 		$this->checkIfSingleInSetOrEmpty(
 			'orderBy',
 			TRUE,
@@ -869,7 +869,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkSortCriteria() {
+	protected function checkSortCriteria() {
 		$this->checkIfMultiInSetOrEmpty(
 			'sortCriteria',
 			TRUE,
@@ -897,7 +897,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkSingleViewPid() {
+	protected function checkSingleViewPid() {
 		$this->checkIfSingleFePageNotEmpty(
 			'singlePID',
 			TRUE,
@@ -913,7 +913,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkFavoritesPid() {
+	protected function checkFavoritesPid() {
 		$this->checkIfSingleFePageNotEmpty(
 			'favoritesPID',
 			TRUE,
@@ -928,7 +928,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkEditorPid() {
+	protected function checkEditorPid() {
 		$this->checkIfSingleFePageNotEmpty(
 			'editorPID',
 			TRUE,
@@ -944,7 +944,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkFilterTargetPid() {
+	protected function checkFilterTargetPid() {
 		$this->checkIfSingleFePageNotEmpty(
 			'filterTargetPID',
 			TRUE,
@@ -960,7 +960,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkImageUploadPid() {
+	protected function checkImageUploadPid() {
 		$this->checkIfSingleFePageNotEmpty(
 			'imageUploadPID',
 			TRUE,
@@ -977,7 +977,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkSysFolderForFeCreatedRecords() {
+	protected function checkSysFolderForFeCreatedRecords() {
 		$this->checkIfSingleSysFolderNotEmpty(
 			'sysFolderForFeCreatedRecords',
 			TRUE,
@@ -994,7 +994,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkSysFolderForFeCreatedAuxiliaryRecords() {
+	protected function checkSysFolderForFeCreatedAuxiliaryRecords() {
 		$this->checkIfSingleSysFolderNotEmpty(
 			'sysFolderForFeCreatedAuxiliaryRecords',
 			FALSE,
@@ -1010,7 +1010,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkPriceOnlyIfAvailable() {
+	protected function checkPriceOnlyIfAvailable() {
 		$this->checkIfBoolean(
 			'priceOnlyIfAvailable',
 			FALSE,
@@ -1028,7 +1028,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkFeEditorRedirectPid() {
+	protected function checkFeEditorRedirectPid() {
 		$this->checkIfSingleFePageNotEmpty(
 			'feEditorRedirectPid',
 			TRUE,
@@ -1045,7 +1045,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkFeEditorNotifyEmail() {
+	protected function checkFeEditorNotifyEmail() {
 		$this->checkIsValidEmailNotEmpty(
 			'feEditorNotifyEmail',
 			TRUE,
@@ -1062,7 +1062,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkDefaultCountry() {
+	protected function checkDefaultCountry() {
 		$this->checkIfPositiveInteger(
 			'defaultCountryUID',
 			TRUE,
@@ -1078,7 +1078,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkShowGoogleMaps() {
+	protected function checkShowGoogleMaps() {
 		$this->checkIfBoolean(
 			'showGoogleMaps',
 			TRUE,
@@ -1095,7 +1095,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkImageUploadThumbnailConfiguration() {
+	protected function checkImageUploadThumbnailConfiguration() {
 		$this->checkImageUploadThumbnailWidth();
 		$this->checkImageUploadThumbnailHeight();
 	}
@@ -1106,7 +1106,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkImageUploadThumbnailWidth() {
+	protected function checkImageUploadThumbnailWidth() {
 		$this->checkIfPositiveInteger(
 			'imageUploadThumbnailWidth',
 			FALSE,
@@ -1123,7 +1123,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkImageUploadThumbnailHeight() {
+	protected function checkImageUploadThumbnailHeight() {
 		$this->checkIfPositiveInteger(
 			'imageUploadThumbnailHeight',
 			FALSE,
@@ -1139,7 +1139,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkAdvertisementPid() {
+	protected function checkAdvertisementPid() {
 		$this->checkIfSingleFePageOrEmpty(
 			'advertisementPID',
 			TRUE,
@@ -1155,7 +1155,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkAdvertisementParameterForObjectUid() {
+	protected function checkAdvertisementParameterForObjectUid() {
 		// Nothing to do - every string is allowed.
 	}
 
@@ -1164,7 +1164,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkAdvertisementExpirationInDays() {
+	protected function checkAdvertisementExpirationInDays() {
 		$this->checkIfPositiveIntegerOrZero(
 			'advertisementExpirationInDays',
 			TRUE,
@@ -1180,7 +1180,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkOffererImageConfiguration() {
+	protected function checkOffererImageConfiguration() {
 		$this->checkOffererImageWidth();
 		$this->checkOffererImageHeight();
 	}
@@ -1190,7 +1190,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkOffererImageWidth() {
+	protected function checkOffererImageWidth() {
 		$this->checkIfPositiveInteger(
 			'offererImageMaxWidth',
 			FALSE,
@@ -1207,7 +1207,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkOffererImageHeight() {
+	protected function checkOffererImageHeight() {
 		$this->checkIfPositiveInteger(
 			'offererImageMaxHeight',
 			FALSE,
@@ -1224,7 +1224,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkLightboxImageConfiguration() {
+	protected function checkLightboxImageConfiguration() {
 		$this->checkEnableLightbox();
 		if ($this->objectToCheck->getConfValueBoolean('enableLightbox')) {
 			$this->checkLightboxImageWidthMax();
@@ -1240,7 +1240,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkEnableLightbox() {
+	protected function checkEnableLightbox() {
 		$this->checkIfBoolean(
 			'enableLightbox',
 			FALSE,
@@ -1257,7 +1257,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkLightboxImageWidthMax() {
+	protected function checkLightboxImageWidthMax() {
 		$this->checkIfPositiveInteger(
 			'lightboxImageWidthMax',
 			FALSE,
@@ -1273,7 +1273,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkLightboxImageHeightMax() {
+	protected function checkLightboxImageHeightMax() {
 		$this->checkIfPositiveInteger(
 			'lightboxImageHeightMax',
 			FALSE,
@@ -1289,7 +1289,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkIncludeJavaScriptLibraries() {
+	protected function checkIncludeJavaScriptLibraries() {
 		$this->checkIfMultiInSetOrEmpty(
 			'includeJavaScriptLibraries',
 			FALSE,
@@ -1306,7 +1306,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkEnableNextPreviousButtons() {
+	protected function checkEnableNextPreviousButtons() {
 		$this->checkIfBoolean(
 			'enableNextPreviousButtons',
 			FALSE,
@@ -1324,7 +1324,7 @@ class tx_realty_configcheck extends Tx_Oelib_ConfigCheck {
 	 *
 	 * @return void
 	 */
-	private function checkEnableNextPreviousButtonsForSingleView() {
+	protected function checkEnableNextPreviousButtonsForSingleView() {
 		$this->checkEnableNextPreviousButtons();
 
 		if (

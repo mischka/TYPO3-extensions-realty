@@ -26,7 +26,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	/**
 	 * @var bool whether this class is instantiated for testing
 	 */
-	private $isTestMode = FALSE;
+	protected $isTestMode = FALSE;
 
 	/**
 	 * The constructor.
@@ -114,7 +114,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 * @return string HTML for the list items, will be empty if there are
 	 *                no offerers
 	 */
-	private function getListItems() {
+	protected function getListItems() {
 		if ($this->hasConfValueString(
 			'userGroupsForOffererList', 's_offererInformation'
 		)) {
@@ -142,7 +142,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 * @return string HTML for each fetched offerer record, will be empty if
 	 *                none were found
 	 */
-	private function listItemQuery($whereClause) {
+	protected function listItemQuery($whereClause) {
 		$listItems = '';
 
 		if ($this->isLastNameAvailable()) {
@@ -176,7 +176,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return bool TRUE if the field last_name exists, FALSE otherwise
 	 */
-	private function isLastNameAvailable() {
+	protected function isLastNameAvailable() {
 		return Tx_Oelib_Db::tableHasColumn('fe_users', 'last_name');
 	}
 
@@ -188,7 +188,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 * @return string HTML for one list row, will be empty if there is no
 	 *                no content (or only the user group) for the row
 	 */
-	private function createListRow(tx_realty_Model_FrontEndUser $offerer) {
+	protected function createListRow(tx_realty_Model_FrontEndUser $offerer) {
 		$rowHasContent = FALSE;
 		$this->resetSubpartsHiding();
 
@@ -228,7 +228,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 * @return string[] associative array with the marker names as keys and the
 	 *               content to replace them with as values, will not be empty
 	 */
-	private function getListRowContent(tx_realty_Model_FrontEndUser $offerer) {
+	protected function getListRowContent(tx_realty_Model_FrontEndUser $offerer) {
 		$result = array();
 
 		$maximumRowContent = array(
@@ -266,7 +266,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 * @return bool TRUE if it is configured to display the information of
 	 *                 the provided offerer, FALSE otherwise
 	 */
-	private function mayDisplayInformation(
+	protected function mayDisplayInformation(
 		tx_realty_Model_FrontEndUser $offerer, $keyOfInformation
 	) {
 		$configurationKey = 'displayedContactInformation';
@@ -303,7 +303,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 *                or if the cached record is an invalid FE user record
 	 *                without a user name
 	 */
-	private function getOffererLabel(tx_realty_Model_FrontEndUser $offerer) {
+	protected function getOffererLabel(tx_realty_Model_FrontEndUser $offerer) {
 		$result = $offerer->getName();
 
 		if (!$offerer->hasCompany()
@@ -324,7 +324,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 *                list is not used in the single view, will be empty if
 	 *                there is no company
 	 */
-	private function getCompany(tx_realty_Model_FrontEndUser $offerer) {
+	protected function getCompany(tx_realty_Model_FrontEndUser $offerer) {
 		$result = $offerer->getCompany();
 		$this->appendUserGroup($result, $offerer);
 
@@ -341,7 +341,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function appendUserGroup(
+	protected function appendUserGroup(
 		&$information, tx_realty_Model_FrontEndUser $offerer
 	) {
 		if (($this->getConfValueString('what_to_display') != 'single_view')
@@ -363,7 +363,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 * @return string title of the first allowed user group of the given
 	 *                FE user, will be empty if the user has no group
 	 */
-	private function getFirstUserGroup(Tx_Oelib_List $userGroups) {
+	protected function getFirstUserGroup(Tx_Oelib_List $userGroups) {
 		$result = '';
 
 		$allowedGroups = GeneralUtility::trimExplode(
@@ -393,7 +393,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 * @return string URL to the objects-by-owner list, will be empty if the
 	 *                owner UID is zero
 	 */
-	private function getObjectsByOwnerUrl($ownerUid) {
+	protected function getObjectsByOwnerUrl($ownerUid) {
 		// There might be no UID if the data to render as offerer information
 		// was initially provided in an array.
 		if ($ownerUid == 0) {
@@ -420,7 +420,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 * @return string WHERE clause part for testing starting with ' AND'
 	 *                if the test mode is enabled, an empty string otherwise
 	 */
-	private function getWhereClauseForTesting() {
+	protected function getWhereClauseForTesting() {
 		return $this->isTestMode ? ' AND Tx_Oelib_is_dummy_record=1' : '';
 	}
 
@@ -433,7 +433,7 @@ class tx_realty_offererList extends tx_realty_pi1_FrontEndView {
 	 * @return string the image tag with the image, will be empty if user has no
 	 *                image
 	 */
-	private function getImageMarkerContent(tx_realty_Model_FrontEndUser $offerer) {
+	protected function getImageMarkerContent(tx_realty_Model_FrontEndUser $offerer) {
 		if (!$offerer->hasImage()) {
 			return '';
 		}

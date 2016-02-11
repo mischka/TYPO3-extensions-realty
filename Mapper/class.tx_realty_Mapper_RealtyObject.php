@@ -45,7 +45,7 @@ class tx_realty_Mapper_RealtyObject extends Tx_Oelib_DataMapper {
 	 *
 	 * @var tx_realty_Model_RealtyObject[]
 	 */
-	private $cacheByObjectNumberAndObjectIdAndLanguage = array();
+	protected $cacheByObjectNumberAndObjectIdAndLanguage = array();
 
 	/**
 	 * Frees as much memory that has been used by this object as possible.
@@ -137,7 +137,7 @@ class tx_realty_Mapper_RealtyObject extends Tx_Oelib_DataMapper {
 	 * @return tx_realty_Model_RealtyObject
 	 *         the realty object that matches all three parameters
 	 */
-	private function findByObjectNumberAndObjectIdAndLanguageFromCache(
+	protected function findByObjectNumberAndObjectIdAndLanguageFromCache(
 		$objectNumber, $openImmoObjectId, $language
 	) {
 		$cacheKey = $this->createCacheKeyFromObjectNumberAndObjectIdAndLanguage(
@@ -165,7 +165,7 @@ class tx_realty_Mapper_RealtyObject extends Tx_Oelib_DataMapper {
 	 *         a cache key, will be unique for the provided triplet, will not be
 	 *         empty
 	 */
-	private function createCacheKeyFromObjectNumberAndObjectIdAndLanguage(
+	protected function createCacheKeyFromObjectNumberAndObjectIdAndLanguage(
 		$objectNumber, $openImmoObjectId, $language
 	) {
 		return $objectNumber . ':' . $openImmoObjectId . ':' . $language;
@@ -212,7 +212,7 @@ class tx_realty_Mapper_RealtyObject extends Tx_Oelib_DataMapper {
 	 * @return tx_realty_Model_RealtyObject
 	 *         the realty object that matches all three parameters
 	 */
-	private function findByObjectNumberAndObjectIdAndLanguageFromDatabase(
+	protected function findByObjectNumberAndObjectIdAndLanguageFromDatabase(
 		$objectNumber, $openImmoObjectId, $language
 	) {
 		return $this->findSingleByWhereClause(array(

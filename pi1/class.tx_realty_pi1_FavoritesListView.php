@@ -44,7 +44,7 @@ class tx_realty_pi1_FavoritesListView extends tx_realty_pi1_AbstractListView {
 	 * @var array[] the data of the currently displayed favorites using the keys
 	 *            [uid][fieldname]
 	 */
-	private $favoritesDataVerbose;
+	protected $favoritesDataVerbose;
 
 	/**
 	 * @var bool whether Google Maps should be shown in this view
@@ -78,7 +78,7 @@ class tx_realty_pi1_FavoritesListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideContactWrapper() {
+	protected function fillOrHideContactWrapper() {
 		if (!$this->hasConfValueInteger('contactPID')) {
 			$this->hideSubparts('contact', 'wrapper');
 			return;
@@ -110,7 +110,7 @@ class tx_realty_pi1_FavoritesListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return void
 	 */
-	private function setFavoritesSessionData() {
+	protected function setFavoritesSessionData() {
 		if (!$this->hasConfValueString('favoriteFieldsInSession')) {
 			return;
 		}
@@ -148,7 +148,7 @@ class tx_realty_pi1_FavoritesListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return void
 	 */
-	private function processSubmittedFavorites() {
+	protected function processSubmittedFavorites() {
 		if (isset($this->piVars['favorites']) && !empty($this->piVars['favorites'])) {
 			if ($this->piVars['remove']) {
 				$this->removeFromFavorites($this->piVars['favorites']);
@@ -170,7 +170,7 @@ class tx_realty_pi1_FavoritesListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return void
 	 */
-	private function removeFromFavorites(array $itemsToRemove) {
+	protected function removeFromFavorites(array $itemsToRemove) {
 		if (empty($itemsToRemove)) {
 			return;
 		}
@@ -229,7 +229,7 @@ class tx_realty_pi1_FavoritesListView extends tx_realty_pi1_AbstractListView {
 	 * @see addToFavorites
 	 * @see storeFavorites
 	 */
-	private function getFavorites() {
+	protected function getFavorites() {
 		return Tx_Oelib_Session::getInstance(Tx_Oelib_Session::TYPE_TEMPORARY)
 			->getAsString(self::FAVORITES_SESSION_KEY);
 	}
@@ -251,7 +251,7 @@ class tx_realty_pi1_FavoritesListView extends tx_realty_pi1_AbstractListView {
 	 * @see addToFavorites
 	 * @see storeFavorites
 	 */
-	private function getFavoritesArray() {
+	protected function getFavoritesArray() {
 		return Tx_Oelib_Session::getInstance(Tx_Oelib_Session::TYPE_TEMPORARY)
 			->getAsIntegerArray(self::FAVORITES_SESSION_KEY);
 	}
@@ -265,7 +265,7 @@ class tx_realty_pi1_FavoritesListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return void
 	 */
-	private function storeFavorites(array $favorites) {
+	protected function storeFavorites(array $favorites) {
 		Tx_Oelib_Session::getInstance(Tx_Oelib_Session::TYPE_TEMPORARY)
 			->setAsArray(self::FAVORITES_SESSION_KEY, $favorites);
 	}

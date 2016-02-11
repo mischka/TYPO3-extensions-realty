@@ -26,32 +26,32 @@ class tx_realty_FrontEnd_MyObjectsListViewTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1_MyObjectsListView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int UID of the dummy realty object
 	 */
-	private $realtyUid = 0;
+	protected $realtyUid = 0;
 
 	/**
 	 * @var int
 	 */
-	private $cityUid = 0;
+	protected $cityUid = 0;
 
 	/**
 	 * @var string title for the dummy realty object
 	 */
-	private static $objectTitle = 'a title';
+	protected static $objectTitle = 'a title';
 
 	/**
 	 * @var int system folder PID
 	 */
-	private $systemFolderPid = 0;
+	protected $systemFolderPid = 0;
 
 	protected function setUp() {
 		Tx_Oelib_HeaderProxyFactory::getInstance()->enableTestMode();
@@ -88,7 +88,7 @@ class tx_realty_FrontEnd_MyObjectsListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function prepareMyObjects(array $userData = array()) {
+	protected function prepareMyObjects(array $userData = array()) {
 		/** @var tx_realty_Model_FrontEndUser|PHPUnit_Framework_MockObject_MockObject $user */
 		$user = $this->getMock('tx_realty_Model_FrontEndUser', array('getNumberOfObjects'));
 		$user->setData($userData);

@@ -34,14 +34,14 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	/**
 	 * @var Tx_Oelib_Template template object
 	 */
-	private $template = NULL;
+	protected $template = NULL;
 
 	/**
 	 * localized error message for the errors occurred during the access check
 	 *
 	 * @var string[]
 	 */
-	private $errorMessages = array();
+	protected $errorMessages = array();
 
 	/**
 	 * @var int tab import
@@ -100,7 +100,7 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	 *
 	 * @return void
 	 */
-	private function initializeTemplate() {
+	protected function initializeTemplate() {
 		$this->doc = GeneralUtility::makeInstance(DocumentTemplate::class);
 		$this->doc->backPath = $GLOBALS['BACK_PATH'];
 		$this->doc->docType = 'xhtml_strict';
@@ -118,7 +118,7 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	 *
 	 * @return string HTML for the OpenImmo tab, will not be empty
 	 */
-	private function createTab() {
+	protected function createTab() {
 		$moduleToken = t3lib_formprotection_Factory::get()->generateToken('moduleCall', self::MODULE_NAME);
 		return $this->doc->getTabMenu(
 			array('M' => self::MODULE_NAME, 'moduleToken' => $moduleToken, 'id' => $this->id),
@@ -134,7 +134,7 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	 *
 	 * @return string the HTML output for the import button
 	 */
-	private function createImportButton() {
+	protected function createImportButton() {
 		$moduleUrl = BackendUtility::getModuleUrl(self::MODULE_NAME, array('id' => $this->id));
 		$this->template->setMarker('module_url', htmlspecialchars($moduleUrl));
 		$this->template->setMarker(
@@ -157,7 +157,7 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	 * @return bool TRUE if the BE user is an admin or if they have the
 	 *                 rights to access the necessary data, FALSE otherwise
 	 */
-	private function hasAccess() {
+	protected function hasAccess() {
 		if ($this->getBackEndUserAuthentication()->isAdmin()) {
 			return TRUE;
 		}
@@ -172,7 +172,7 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	 * @return bool TRUE if the user has write access to both pages, FALSE
 	 *                 otherwise
 	 */
-	private function userHasAccessToPages() {
+	protected function userHasAccessToPages() {
 		$configurationProxy = Tx_Oelib_ConfigurationProxy::getInstance('realty');
 
 		$objectsPid = $configurationProxy->getAsInteger(
@@ -206,7 +206,7 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	 * @return bool TRUE if the user has the needed DB table access
 	 *                 permissions, FALSE otherwise
 	 */
-	private function userHasAccessToTables() {
+	protected function userHasAccessToTables() {
 		$userHasAccessToTables = TRUE;
 		$neededTables = array(
 			'tx_realty_objects',
@@ -241,7 +241,7 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	 *
 	 * @return void
 	 */
-	private function storeErrorMessage($message, $value) {
+	protected function storeErrorMessage($message, $value) {
 		$this->errorMessages[] = sprintf(
 			$this->translate('error_message_' . $message),
 			$value
@@ -254,7 +254,7 @@ class tx_realty_BackEnd_Module extends BaseScriptClass {
 	 * @return string HTML output for the error messages, will be empty if no
 	 *                errors occurred during processing
 	 */
-	private function getErrorMessages() {
+	protected function getErrorMessages() {
 		if (empty($this->errorMessages)) {
 			return '';
 		}

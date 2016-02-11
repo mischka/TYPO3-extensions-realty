@@ -26,7 +26,7 @@ class tx_realty_Import_DomDocumentConverterTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_domDocumentConverterChild
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * static_info_tables UID of Germany
@@ -40,7 +40,7 @@ class tx_realty_Import_DomDocumentConverterTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @var array
 	 */
-	private $graphicsConfigurationBackup = array();
+	protected $graphicsConfigurationBackup = array();
 
 	protected function setUp() {
 		$this->graphicsConfigurationBackup = $GLOBALS['TYPO3_CONF_VARS']['GFX'];
@@ -66,7 +66,7 @@ class tx_realty_Import_DomDocumentConverterTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return DOMDocument DOMDocument of the provided XML string
 	 */
-	private function setRawDataToConvert($xmlString) {
+	protected function setRawDataToConvert($xmlString) {
 		$loadedXml = new DOMDocument();
 		$loadedXml->loadXML($xmlString);
 		$this->fixture->setRawRealtyData($loadedXml);

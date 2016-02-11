@@ -27,7 +27,7 @@ class tx_realty_cacheManager {
 	/**
 	 * @var CacheManager
 	 */
-	private static $cacheManager = NULL;
+	protected static $cacheManager = NULL;
 
 	/**
 	 * Clears the FE cache for pages with a realty plugin.
@@ -46,7 +46,7 @@ class tx_realty_cacheManager {
 	 * @return string[] page UIDs of the pages with the realty plugin, each will be
 	 *               prefixed with $prefix, will be empty if there are none
 	 */
-	private static function getPageUids($prefix = '') {
+	protected static function getPageUids($prefix = '') {
 		$pageUids = Tx_Oelib_Db::selectMultiple(
 			'pid', 'tt_content', 'list_type = "realty_pi1"'
 		);
@@ -65,7 +65,7 @@ class tx_realty_cacheManager {
 	 *
 	 * @return void
 	 */
-	private static function clearCacheWithCachingFramework() {
+	protected static function clearCacheWithCachingFramework() {
 		/** @var $pageCache t3lib_cache_frontend_AbstractFrontend */
 		$pageCache = self::getCacheManager()->getCache('cache_pages');
 		foreach (self::getPageUids() as $pageUid) {

@@ -130,12 +130,12 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	/**
 	 * @var string the charset that is used for the output
 	 */
-	private $renderCharset = 'utf-8';
+	protected $renderCharset = 'utf-8';
 
 	/**
 	 * @var CharsetConverter helper for charset conversion
 	 */
-	private $charsetConversion = NULL;
+	protected $charsetConversion = NULL;
 
 	/**
 	 * @var int the length of cropped titles
@@ -147,35 +147,35 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @var Tx_Oelib_List<tx_realty_Model_Image>
 	 */
-	private $images = NULL;
+	protected $images = NULL;
 
 	/**
 	 * whether the image records need to get saved
 	 *
 	 * @var bool
 	 */
-	private $imagesNeedToGetSaved = FALSE;
+	protected $imagesNeedToGetSaved = FALSE;
 
 	/**
 	 * whether the old image records associated with this model need to get deleted
 	 *
 	 * @var bool
 	 */
-	private $oldImagesNeedToGetDeleted = FALSE;
+	protected $oldImagesNeedToGetDeleted = FALSE;
 
 	/**
 	 * the documents related to this realty object
 	 *
 	 * @var Tx_Oelib_List<tx_realty_Model_Document>
 	 */
-	private $documents = NULL;
+	protected $documents = NULL;
 
 	/**
 	 * whether the related documents need to get saved
 	 *
 	 * @var bool
 	 */
-	private $documentsNeedToGetSaved = FALSE;
+	protected $documentsNeedToGetSaved = FALSE;
 
 	/**
 	 * whether the old document records associated with this model need to get
@@ -183,17 +183,17 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @var bool
 	 */
-	private $oldDocumentsNeedToGetDeleted = FALSE;
+	protected $oldDocumentsNeedToGetDeleted = FALSE;
 
 	/**
 	 * @var string[] the owner record is cached in order to improve performance
 	 */
-	private $ownerData = array();
+	protected $ownerData = array();
 
 	/**
 	 * @var string[] required fields for OpenImmo records
 	 */
-	private $requiredFields = array(
+	protected $requiredFields = array(
 		'zip',
 		'object_number',
 		// 'object_type' refers to 'vermarktungsart' in the OpenImmo schema.
@@ -211,7 +211,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @var string[]
 	 */
-	private static $propertyTables = array(
+	protected static $propertyTables = array(
 		'tx_realty_cities' => 'city',
 		'tx_realty_apartment_types' => 'apartment_type',
 		'tx_realty_house_types' => 'house_type',
@@ -223,22 +223,22 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	/**
 	 * @var bool whether hidden objects are loadable
 	 */
-	private $canLoadHiddenObjects = TRUE;
+	protected $canLoadHiddenObjects = TRUE;
 
 	/**
 	 * @var bool whether a newly created record is for testing purposes only
 	 */
-	private $isDummyRecord = FALSE;
+	protected $isDummyRecord = FALSE;
 
 	/**
 	 * @var ReferenceIndex
 	 */
-	private static $referenceIndex = NULL;
+	protected static $referenceIndex = NULL;
 
 	/**
 	 * @var tx_realty_Model_FrontEndUser the owner of this object
 	 */
-	private $owner = NULL;
+	protected $owner = NULL;
 
 	/**
 	 * Constructor.
@@ -428,7 +428,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *         realty record ready to load, image records got separated, will be
 	 *         empty if the given array was empty
 	 */
-	private function isolateImageRecords(array $data) {
+	protected function isolateImageRecords(array $data) {
 		if (!is_array($data['images'])) {
 			return $data;
 		}
@@ -468,7 +468,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *         realty record ready to load, document records got separated, will
 	 *         be empty if the given array was empty
 	 */
-	private function isolateDocumentRecords(array $data) {
+	protected function isolateDocumentRecords(array $data) {
 		if (!is_array($data['documents'])) {
 			return $data;
 		}
@@ -574,7 +574,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return bool TRUE if the current owner may add objects to the database
 	 */
-	private function ownerMayAddObjects() {
+	protected function ownerMayAddObjects() {
 		if ($this->isOwnerDataUsable()) {
 			$this->getOwner()->resetObjectsHaveBeenCalculated();
 			$ownerCanAddObjects = $this->getOwner()->canAddNewObjects();
@@ -590,7 +590,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return void
 	 */
-	private function loadOwnerRecord() {
+	protected function loadOwnerRecord() {
 		if (!$this->hasOwner() && ($this->getAsString('openimmo_anid') == '')) {
 			return;
 		}
@@ -621,7 +621,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return void
 	 */
-	private function processOwnerData() {
+	protected function processOwnerData() {
 		$this->addRealtyRecordsOwner();
 		if ($this->isOwnerDataUsable()) {
 			$this->setProperty('contact_data_source', 1);
@@ -637,7 +637,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return void
 	 */
-	private function addRealtyRecordsOwner() {
+	protected function addRealtyRecordsOwner() {
 		// Saves an existing owner from being overwritten.
 		if ($this->hasOwner()) {
 			return;
@@ -656,7 +656,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 * @return bool TRUE if there is an owner and his data may be used in
 	 *                 the FE, FALSE otherwise
 	 */
-	private function isOwnerDataUsable() {
+	protected function isOwnerDataUsable() {
 		return (Tx_Oelib_ConfigurationProxy::getInstance('realty')
 			->getAsBoolean('useFrontEndUserDataAsContactDataForImportedRecords')
 				&& $this->hasOwner()
@@ -798,7 +798,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 * @return bool TRUE if the value is either numeric or a string
 	 *                 or of boolean, FALSE otherwise
 	 */
-	private function isAllowedValue($value) {
+	protected function isAllowedValue($value) {
 		return (is_numeric($value) || is_string($value) || is_bool($value));
 	}
 
@@ -885,7 +885,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return ReferenceIndex a cached reference index instance
 	 */
-	private function getReferenceIndex() {
+	protected function getReferenceIndex() {
 		if (!self::$referenceIndex) {
 			self::$referenceIndex = GeneralUtility::makeInstance(ReferenceIndex::class);
 		}
@@ -904,7 +904,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 * @return int UID of the newly created record, 0 if no record was
 	 *                 created
 	 */
-	private function insertPropertyToOwnTable($key, $table) {
+	protected function insertPropertyToOwnTable($key, $table) {
 		// If the property is not defined or the value is an empty string or
 		// zero, no record will be created.
 		if (!$this->existsKey($key)
@@ -939,7 +939,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return void
 	 */
-	private function refreshImageEntries($overridePid = 0) {
+	protected function refreshImageEntries($overridePid = 0) {
  		if ($this->oldImagesNeedToGetDeleted) {
  			$this->discardExistingImages();
  		}
@@ -1003,7 +1003,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return void
 	 */
-	private function refreshDocumentEntries($overridePid = 0) {
+	protected function refreshDocumentEntries($overridePid = 0) {
  		if ($this->oldDocumentsNeedToGetDeleted) {
  			$this->discardExistingDocuments();
  		}
@@ -1096,7 +1096,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return void
 	 */
-	private function retrieveAttachedImages() {
+	protected function retrieveAttachedImages() {
 		if (!$this->identifyObjectAndSetUid()) {
 			return;
 		}
@@ -1117,7 +1117,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return void
 	 */
-	private function retrieveAttachedDocuments() {
+	protected function retrieveAttachedDocuments() {
 		if (!$this->identifyObjectAndSetUid()) {
 			return;
 		}
@@ -1403,7 +1403,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return bool TRUE if the record has a UID, FALSE otherwise
 	 */
-	private function identifyObjectAndSetUid() {
+	protected function identifyObjectAndSetUid() {
 		if ($this->hasUid()) {
 			return TRUE;
 		}
@@ -1433,7 +1433,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 * @return int the UID of the record identified in the database, zero if
 	 *                 none was found
 	 */
-	private function getRecordUid(
+	protected function getRecordUid(
 		array $dataArray, $table = 'tx_realty_objects'
 	) {
 		$databaseResultRow = $this->compareWithDatabase(
@@ -1458,7 +1458,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @return string[] database result row in an array, will be empty if no matching record was found
 	 */
-	private function compareWithDatabase($whatToSelect, array $dataArray, $table) {
+	protected function compareWithDatabase($whatToSelect, array $dataArray, $table) {
 		$whereClauseParts = array();
 		foreach (array_keys($dataArray) as $key) {
 			$whereClauseParts[] = $key . '=' .
@@ -2056,7 +2056,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 * @return bool TRUE if the contact data should be fetched from the owner
 	 *                 FE user, FALSE otherwise
 	 */
-	private function usesContactDataOfOwner() {
+	protected function usesContactDataOfOwner() {
 		$useContactDataOfOwner = $this->getAsInteger('contact_data_source') == self::CONTACT_DATA_FROM_OWNER_ACCOUNT;
 
 		if ($useContactDataOfOwner && $this->owner === NULL) {
@@ -2075,7 +2075,7 @@ class tx_realty_Model_RealtyObject extends tx_realty_Model_AbstractTitledModel i
 	 *
 	 * @throws RuntimeException
 	 */
-	private function initializeCharsetConversion() {
+	protected function initializeCharsetConversion() {
 		if ($this->getFrontEndController() !== NULL) {
 			$this->renderCharset = $this->getFrontEndController()->renderCharset;
 			$this->charsetConversion = $this->getFrontEndController()->csConvObj;

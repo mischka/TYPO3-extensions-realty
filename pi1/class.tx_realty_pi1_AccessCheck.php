@@ -76,7 +76,7 @@ class tx_realty_pi1_AccessCheck {
 	 *
 	 * @return void
 	 */
-	private function isFrontEndUserLoggedIn() {
+	protected function isFrontEndUserLoggedIn() {
 		if (!Tx_Oelib_FrontEndLoginManager::getInstance()->isLoggedIn()) {
 			Tx_Oelib_HeaderProxyFactory::getInstance()->getHeaderProxy()
 				->addHeader('Status: 403 Forbidden');
@@ -93,7 +93,7 @@ class tx_realty_pi1_AccessCheck {
 	 *
 	 * @return void
 	 */
-	private function isRealtyObjectUidProvided($realtyObjectUid) {
+	protected function isRealtyObjectUidProvided($realtyObjectUid) {
 		if ($realtyObjectUid > 0) {
 			return;
 		}
@@ -114,7 +114,7 @@ class tx_realty_pi1_AccessCheck {
 	 *
 	 * @return void
 	 */
-	private function realtyObjectExistsInDatabase($realtyObjectUid) {
+	protected function realtyObjectExistsInDatabase($realtyObjectUid) {
 		/** @var tx_realty_Mapper_RealtyObject $mapper */
 		$mapper = Tx_Oelib_MapperRegistry::get('tx_realty_Mapper_RealtyObject');
 		if (($realtyObjectUid == 0) || $mapper->existsModel($realtyObjectUid, TRUE)
@@ -137,7 +137,7 @@ class tx_realty_pi1_AccessCheck {
 	 *
 	 * @return void
 	 */
-	private function frontEndUserOwnsObject($realtyObjectUid) {
+	protected function frontEndUserOwnsObject($realtyObjectUid) {
 		if ($realtyObjectUid == 0) {
 			return;
 		}
@@ -165,7 +165,7 @@ class tx_realty_pi1_AccessCheck {
 	 *
 	 * @return void
 	 */
-	private function checkObjectLimit($realtyObjectUid) {
+	protected function checkObjectLimit($realtyObjectUid) {
 		if ($realtyObjectUid > 0) {
 			return;
 		}

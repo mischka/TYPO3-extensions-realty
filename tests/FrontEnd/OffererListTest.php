@@ -25,22 +25,22 @@ class tx_realty_FrontEnd_OffererListTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var tx_realty_offererList
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var int FE user group UID
 	 */
-	private $feUserGroupUid;
+	protected $feUserGroupUid;
 
 	/**
 	 * @var int FE user UID
 	 */
-	private $offererUid;
+	protected $offererUid;
 
 	/**
 	 * @var string FE user group name
@@ -87,7 +87,7 @@ class tx_realty_FrontEnd_OffererListTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyRecords() {
+	protected function createDummyRecords() {
 		$this->feUserGroupUid = $this->testingFramework->createFrontEndUserGroup(
 			array('title' => self::FE_USER_GROUP_NAME)
 		);

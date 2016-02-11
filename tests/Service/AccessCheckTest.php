@@ -24,16 +24,16 @@ class tx_realty_Service_AccessCheckTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1_AccessCheck
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int UID of the dummy object
 	 */
-	private $dummyObjectUid;
+	protected $dummyObjectUid;
 
 	protected function setUp() {
 		Tx_Oelib_HeaderProxyFactory::getInstance()->enableTestMode();

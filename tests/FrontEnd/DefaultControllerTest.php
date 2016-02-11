@@ -24,51 +24,51 @@ class tx_realty_FrontEnd_DefaultControllerTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int login PID
 	 */
-	private $loginPid = 0;
+	protected $loginPid = 0;
 	/**
 	 * @var int system folder PID
 	 */
-	private $systemFolderPid = 0;
+	protected $systemFolderPid = 0;
 	/**
 	 * @var int sub-system folder PID
 	 */
-	private $subSystemFolderPid = 0;
+	protected $subSystemFolderPid = 0;
 
 	/**
 	 * @var int UID of the first dummy realty object
 	 */
-	private $firstRealtyUid = 0;
+	protected $firstRealtyUid = 0;
 	/**
 	 * @var string object number for the first dummy realty object
 	 */
-	private static $firstObjectNumber = '1';
+	protected static $firstObjectNumber = '1';
 	/**
 	 * @var string title for the first dummy realty object
 	 */
-	private static $firstObjectTitle = 'a title';
+	protected static $firstObjectTitle = 'a title';
 
 	/**
 	 * @var int second dummy realty object
 	 */
-	private $secondRealtyUid = 0;
+	protected $secondRealtyUid = 0;
 	/**
 	 * @var string object number for the second dummy realty object
 	 */
-	private static $secondObjectNumber = '2';
+	protected static $secondObjectNumber = '2';
 	/**
 	 * @var string title for the second dummy realty object
 	 */
-	private static $secondObjectTitle = 'another title';
+	protected static $secondObjectTitle = 'another title';
 
 	/**
 	 * @var int static_info_tables UID of Germany
@@ -139,7 +139,7 @@ class tx_realty_FrontEnd_DefaultControllerTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyPages() {
+	protected function createDummyPages() {
 		$this->loginPid = $this->testingFramework->createFrontEndPage();
 		$this->systemFolderPid = $this->testingFramework->createSystemFolder(1);
 		$this->subSystemFolderPid = $this->testingFramework->createSystemFolder(
@@ -152,7 +152,7 @@ class tx_realty_FrontEnd_DefaultControllerTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyObjects() {
+	protected function createDummyObjects() {
 		$this->firstRealtyUid = $this->testingFramework->createRecord(
 			'tx_realty_objects',
 			array(

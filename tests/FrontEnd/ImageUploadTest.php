@@ -25,54 +25,54 @@ class tx_realty_FrontEnd_ImageUploadTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_frontEndImageUpload
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * UID of the dummy object
 	 *
 	 * @var int
 	 */
-	private $dummyObjectUid = 0;
+	protected $dummyObjectUid = 0;
 
 	/**
 	 * title for the first dummy image
 	 *
 	 * @var string
 	 */
-	private static $firstImageTitle = 'first test image';
+	protected static $firstImageTitle = 'first test image';
 
 	/**
 	 * file name for the first dummy image
 	 *
 	 * @var string
 	 */
-	private static $firstImageFileName = 'first.jpg';
+	protected static $firstImageFileName = 'first.jpg';
 
 	/**
 	 * title for the second dummy image
 	 *
 	 * @var string
 	 */
-	private static $secondImageTitle = 'second test image';
+	protected static $secondImageTitle = 'second test image';
 
 	/**
 	 * file name for the second dummy image
 	 *
 	 * @var string
 	 */
-	private static $secondImageFileName = 'second.jpg';
+	protected static $secondImageFileName = 'second.jpg';
 
 	/**
 	 * backup of $GLOBALS['TYPO3_CONF_VARS']['GFX']
 	 *
 	 * @var array
 	 */
-	private $graphicsConfigurationBackup = array();
+	protected $graphicsConfigurationBackup = array();
 
 	protected function setUp() {
 		$this->graphicsConfigurationBackup = $GLOBALS['TYPO3_CONF_VARS']['GFX'];
@@ -110,7 +110,7 @@ class tx_realty_FrontEnd_ImageUploadTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return TypoScriptFrontendController
 	 */
-	private function getFrontEndController() {
+	protected function getFrontEndController() {
 		return $GLOBALS['TSFE'];
 	}
 
@@ -123,7 +123,7 @@ class tx_realty_FrontEnd_ImageUploadTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyRecords() {
+	protected function createDummyRecords() {
 		$userUid = $this->testingFramework->createFrontEndUser();
 
 		$this->dummyObjectUid = $this->testingFramework->createRecord(
@@ -137,7 +137,7 @@ class tx_realty_FrontEnd_ImageUploadTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createImageRecords() {
+	protected function createImageRecords() {
 		$realtyObject = new tx_realty_Model_RealtyObject(TRUE);
 		$realtyObject->loadRealtyObject($this->dummyObjectUid);
 

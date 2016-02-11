@@ -27,7 +27,7 @@ class tx_realty_pi1_SingleView extends tx_realty_pi1_FrontEndView {
 	/**
 	 * @var bool whether the constructor is called in test mode
 	 */
-	private $isTestMode = FALSE;
+	protected $isTestMode = FALSE;
 
 	/**
 	 * The constructor.
@@ -73,7 +73,7 @@ class tx_realty_pi1_SingleView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return bool TRUE if the object has been loaded, FALSE otherwise
 	 */
-	private function existsRealtyObject($uid) {
+	protected function existsRealtyObject($uid) {
 		if ($uid <= 0) {
 			return FALSE;
 		}
@@ -111,7 +111,7 @@ class tx_realty_pi1_SingleView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function createSingleView($uid) {
+	protected function createSingleView($uid) {
 		$this->setPageTitle($uid);
 
 		$hasTextContent = FALSE;
@@ -156,7 +156,7 @@ class tx_realty_pi1_SingleView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function setPageTitle($uid) {
+	protected function setPageTitle($uid) {
 		/** @var tx_realty_Mapper_RealtyObject $realtyObjectMapper */
 		$mapper = Tx_Oelib_MapperRegistry::get('tx_realty_Mapper_RealtyObject');
 		/** @var tx_realty_Model_RealtyObject $realtyObject */
@@ -184,7 +184,7 @@ class tx_realty_pi1_SingleView extends tx_realty_pi1_FrontEndView {
 	 *                will be empty if there is no data to display for the
 	 *                requested view
 	 */
-	private function getView($uid, $viewName) {
+	protected function getView($uid, $viewName) {
 		/** @var tx_realty_pi1_FrontEndView $view */
 		$view = GeneralUtility::makeInstance(
 			'tx_realty_pi1_' . ucfirst($viewName) . 'View',
@@ -208,7 +208,7 @@ class tx_realty_pi1_SingleView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function hideActionButtonsIfNecessary(array $displayedViews) {
+	protected function hideActionButtonsIfNecessary(array $displayedViews) {
 		/** @var Tx_Oelib_Visibility_Tree $visibilityTree */
 		$visibilityTree = GeneralUtility::makeInstance(
 			Tx_Oelib_Visibility_Tree::class,

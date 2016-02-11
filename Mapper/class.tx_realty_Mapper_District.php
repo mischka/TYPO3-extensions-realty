@@ -51,7 +51,7 @@ class tx_realty_Mapper_District extends Tx_Oelib_DataMapper {
 	 *
 	 * @var tx_realty_Model_District[]
 	 */
-	private $cacheByNameAndCityUid = array();
+	protected $cacheByNameAndCityUid = array();
 
 	/**
 	 * Frees as much memory that has been used by this object as possible.
@@ -152,7 +152,7 @@ class tx_realty_Mapper_District extends Tx_Oelib_DataMapper {
 	 *
 	 * @return tx_realty_Model_District the district with the given name and city
 	 */
-	private function findByNameAndCityUidFromCache($districtName, $cityUid) {
+	protected function findByNameAndCityUidFromCache($districtName, $cityUid) {
 		$cacheKey = $this->createCacheKeyFromNameAndCityUid(
 			$districtName, $cityUid
 		);
@@ -197,7 +197,7 @@ class tx_realty_Mapper_District extends Tx_Oelib_DataMapper {
 	 * @return string a cache key, will be unique for that name/city pair,
 	 *                will not be empty
 	 */
-	private function createCacheKeyFromNameAndCityUid($districtName, $cityUid) {
+	protected function createCacheKeyFromNameAndCityUid($districtName, $cityUid) {
 		return $cityUid . ':' . $districtName;
 	}
 
@@ -214,7 +214,7 @@ class tx_realty_Mapper_District extends Tx_Oelib_DataMapper {
 	 *
 	 * @return tx_realty_Model_District the district with the given name and city
 	 */
-	private function findByNameAndCityUidFromDatabase($districtName, $cityUid) {
+	protected function findByNameAndCityUidFromDatabase($districtName, $cityUid) {
 		return $this->findSingleByWhereClause(array(
 			'title' => $districtName,
 			'city' => $cityUid,

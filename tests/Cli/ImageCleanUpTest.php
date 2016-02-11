@@ -25,17 +25,17 @@ class tx_realty_Cli_ImageCleanUpTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_cli_ImageCleanUp
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var string upload folder name
 	 */
-	private $uploadFolder = 'uploads/tx_realty_test';
+	protected $uploadFolder = 'uploads/tx_realty_test';
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');

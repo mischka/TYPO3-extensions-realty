@@ -29,27 +29,27 @@ class tx_realty_FrontEnd_EditorTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_frontEndEditor object to be tested
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int UID of the dummy object
 	 */
-	private $dummyObjectUid = 0;
+	protected $dummyObjectUid = 0;
 
 	/**
 	 * @var string dummy string value
 	 */
-	private static $dummyStringValue = 'test value';
+	protected static $dummyStringValue = 'test value';
 
 	/**
 	 * @var MailMessage|PHPUnit_Framework_MockObject_MockObject
 	 */
-	private $message = NULL;
+	protected $message = NULL;
 
 	protected function setUp() {
 		Tx_Oelib_HeaderProxyFactory::getInstance()->enableTestMode();
@@ -92,7 +92,7 @@ class tx_realty_FrontEnd_EditorTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return TypoScriptFrontendController
 	 */
-	private function getFrontEndController() {
+	protected function getFrontEndController() {
 		return $GLOBALS['TSFE'];
 	}
 
@@ -103,7 +103,7 @@ class tx_realty_FrontEnd_EditorTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return string
 	 */
-	private function translate($key) {
+	protected function translate($key) {
 		return $this->getFrontEndController()->sL($key);
 	}
 
@@ -112,7 +112,7 @@ class tx_realty_FrontEnd_EditorTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyRecords() {
+	protected function createDummyRecords() {
 		/** @var tx_realty_Model_FrontEndUser $user */
 		$user = Tx_Oelib_MapperRegistry::get('tx_realty_Mapper_FrontEndUser')->getLoadedTestingModel(
 			array(
@@ -139,7 +139,7 @@ class tx_realty_FrontEnd_EditorTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createAuxiliaryRecords() {
+	protected function createAuxiliaryRecords() {
 		$realtyObject = new tx_realty_Model_RealtyObject(TRUE);
 		$realtyObject->loadRealtyObject($this->dummyObjectUid);
 

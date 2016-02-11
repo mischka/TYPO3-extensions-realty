@@ -24,12 +24,12 @@ class tx_realty_Mapper_CityTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var tx_realty_Mapper_City
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');

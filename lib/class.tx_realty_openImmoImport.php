@@ -26,12 +26,12 @@ class tx_realty_openImmoImport {
 	/**
 	 * @var string stores the complete log entry
 	 */
-	private $logEntry = '';
+	protected $logEntry = '';
 
 	/**
 	 * @var string stores the complete error log
 	 */
-	private $errorLog = '';
+	protected $errorLog = '';
 
 	/**
 	 * @var string Stores log information to be written to '$logEntry'. So it
@@ -39,48 +39,48 @@ class tx_realty_openImmoImport {
 	 *             e-mails only about the import of certain records to a certain
 	 *             contact address.
 	 */
-	private $temporaryLogEntry = '';
+	protected $temporaryLogEntry = '';
 
 	/**
 	 * @var string Stores log information to be written to '$errorLog'. So it is
 	 *             possible to use only parts of the entire log.
 	 */
-	private $temporaryErrorLog = '';
+	protected $temporaryErrorLog = '';
 
 	/**
 	 * @var DOMDocument the current imported XML
 	 */
-	private $importedXml = NULL;
+	protected $importedXml = NULL;
 
 	/**
 	 * @var Tx_Oelib_ConfigurationProxy to access the EM configuration
 	 */
-	private $globalConfiguration = NULL;
+	protected $globalConfiguration = NULL;
 
 	/**
 	 * @var tx_realty_Model_RealtyObject
 	 */
-	private $realtyObject = NULL;
+	protected $realtyObject = NULL;
 
 	/**
 	 * @var tx_realty_translator
 	 */
-	private static $translator = NULL;
+	protected static $translator = NULL;
 
 	/**
 	 * @var tx_realty_fileNameMapper
 	 */
-	private $fileNameMapper = NULL;
+	protected $fileNameMapper = NULL;
 
 	/**
 	 * @var string the upload directory for images
 	 */
-	private $uploadDirectory = '';
+	protected $uploadDirectory = '';
 
 	/**
 	 * @var bool whether the current zip file should be deleted
 	 */
-	private $deleteCurrentZipFile = TRUE;
+	protected $deleteCurrentZipFile = TRUE;
 
 	/**
 	 * @var string[] ZIP archives which are deleted at the end of import and
@@ -89,14 +89,14 @@ class tx_realty_openImmoImport {
 	 *            XML file as this is the criterion for trying to import the
 	 *            XML file as an OpenImmo record.
 	 */
-	private $filesToDelete = array();
+	protected $filesToDelete = array();
 
 	/**
 	 * whether the class is tested and only dummy records should be created
 	 *
 	 * @var bool
 	 */
-	private $isTestMode = FALSE;
+	protected $isTestMode = FALSE;
 
 	/**
 	 * Constructor.
@@ -181,7 +181,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return tx_realty_translator the cached translator object
 	 */
-	private function getTranslator() {
+	protected function getTranslator() {
 		if (self::$translator === NULL) {
 			self::$translator = GeneralUtility::makeInstance('tx_realty_translator');
 		}
@@ -202,7 +202,7 @@ class tx_realty_openImmoImport {
 	 *         Two-dimensional array of e-mail data. Each inner array has the elements "recipient", "objectNumber",
 	 *         "logEntry" and "errorLog". Will be empty if there are no records to insert.
 	 */
-	private function processRealtyRecordInsertion($currentZip) {
+	protected function processRealtyRecordInsertion($currentZip) {
 		$emailData = array();
 
 		$overridePid = $this->getOverridePidForZip($currentZip);
@@ -252,7 +252,7 @@ class tx_realty_openImmoImport {
 	 * @return int PID of the system folder to store the realty record
 	 *                 in or 0 if the default folder should be used
 	 */
-	private function getOverridePidForZip($fileName) {
+	protected function getOverridePidForZip($fileName) {
 		if (($fileName === '')|| ($this->globalConfiguration->getAsString('pidsForRealtyObjectsAndImagesByFileName') === '')) {
 			return 0;
 		}
@@ -351,7 +351,7 @@ class tx_realty_openImmoImport {
 	 * @return string localized message that validation should be enabled,
 	 *                an empty string if this is already enabled
 	 */
-	private function getPleaseActivateValidationMessage() {
+	protected function getPleaseActivateValidationMessage() {
 		return ($this->globalConfiguration->getAsString('openImmoSchema') !== '')
 			? $this->getTranslator()->translate('message_please_validate')
 			: '' ;
@@ -366,7 +366,7 @@ class tx_realty_openImmoImport {
 	 *                 an allowed FE user, also TRUE if this check is
 	 *                 disabled by configuration, FALSE otherwise
 	 */
-	private function hasValidOwnerForImport() {
+	protected function hasValidOwnerForImport() {
 		if (!$this->globalConfiguration->getAsBoolean('onlyImportForRegisteredFrontEndUsers')) {
 			return TRUE;
 		}
@@ -395,7 +395,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function addToLogEntry($logFraction) {
+	protected function addToLogEntry($logFraction) {
 		$this->temporaryLogEntry .= $logFraction.LF;
 	}
 
@@ -407,7 +407,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function addToErrorLog($errorMessage) {
+	protected function addToErrorLog($errorMessage) {
 		$this->temporaryErrorLog .= $errorMessage.LF;
 		$this->addToLogEntry($errorMessage);
 	}
@@ -418,7 +418,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function storeLogsAndClearTemporaryLog() {
+	protected function storeLogsAndClearTemporaryLog() {
 		$this->errorLog .= $this->temporaryErrorLog;
 		$this->temporaryErrorLog = '';
 
@@ -435,7 +435,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return bool TRUE if the requirements to start the import are fulfilled, FALSE otherwise
 	 */
-	private function canStartImport($importDirectory) {
+	protected function canStartImport($importDirectory) {
 		$result = TRUE;
 
 		if (!in_array('zip', get_loaded_extensions(), TRUE)) {
@@ -454,7 +454,7 @@ class tx_realty_openImmoImport {
 	 * @return bool TRUE if the import directory exists and is readable and
 	 *                 writable, FALSE otherwise
 	 */
-	private function isImportDirectoryAccessible($importDirectory) {
+	protected function isImportDirectoryAccessible($importDirectory) {
 		$isAccessible = FALSE;
 
 		if (!@is_dir($importDirectory)) {
@@ -482,7 +482,7 @@ class tx_realty_openImmoImport {
 	 * @return bool TRUE if the realty upload path exists and is writable,
 	 *                 FALSE otherwise
 	 */
-	private function isUploadDirectoryAccessible(){
+	protected function isUploadDirectoryAccessible(){
 		$isAccessible = FALSE;
 
 		if (!@is_dir($this->uploadDirectory)){
@@ -506,7 +506,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function addFolderAccessErrorMessage($message, $path) {
+	protected function addFolderAccessErrorMessage($message, $path) {
 		$ownerUid = fileowner($path);
 		if (function_exists('posix_getpwuid')) {
 			$ownerName = posix_getpwuid($ownerUid) . ', ' . $ownerUid;
@@ -544,7 +544,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return bool TRUE if 'onlyErrors' is enabled, FALSE otherwise
 	 */
-	private function isErrorLogOnlyEnabled() {
+	protected function isErrorLogOnlyEnabled() {
 		return $this->globalConfiguration->getAsBoolean('onlyErrors');
 	}
 
@@ -553,7 +553,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return string default e-mail address, may be empty
 	 */
-	private function getDefaultEmailAddress() {
+	protected function getDefaultEmailAddress() {
 		return $this->globalConfiguration->getAsString('emailAddress');
 	}
 
@@ -564,7 +564,7 @@ class tx_realty_openImmoImport {
 	 * @return bool TRUE if contact persons should receive e-mails,
 	 *                 FALSE otherwise
 	 */
-	private function isNotifyContactPersonsEnabled() {
+	protected function isNotifyContactPersonsEnabled() {
 		return $this->globalConfiguration->getAsBoolean('notifyContactPersons');
 	}
 
@@ -579,7 +579,7 @@ class tx_realty_openImmoImport {
 	 *               'objectNumber', 'logEntry' and 'errorLog', will not
 	 *               be empty
 	 */
-	private function createEmailRawDataArray($email, $objectNumber) {
+	protected function createEmailRawDataArray($email, $objectNumber) {
 		return array(
 			'recipient' => $email,
 			'objectNumber' => $objectNumber,
@@ -655,7 +655,7 @@ class tx_realty_openImmoImport {
 	 * @return bool TRUE if the structure of the array is valid, FALSE
 	 *                 otherwise
 	 */
-	private function validateEmailDataArray(array $emailData) {
+	protected function validateEmailDataArray(array $emailData) {
 		$isValidDataArray = TRUE;
 		$requiredKeys = array(
 			'recipient',
@@ -690,7 +690,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function purgeRecordsWithoutLogMessages(array &$emailData) {
+	protected function purgeRecordsWithoutLogMessages(array &$emailData) {
 		foreach ($emailData as $recipient => $data) {
 			foreach ($data as $key => $emailContent) {
 				if (implode('', $emailContent) === '') {
@@ -708,7 +708,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function purgeRecipientsForEmptyMessages(array &$emailData) {
+	protected function purgeRecipientsForEmptyMessages(array &$emailData) {
 		foreach ($emailData as $recipient => $data) {
 			if (empty($data)) {
 				unset($emailData[$recipient]);
@@ -726,7 +726,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return string e-mail body
 	 */
-	private function fillEmailTemplate($recordsForOneEmail) {
+	protected function fillEmailTemplate($recordsForOneEmail) {
 		/** @var $template Tx_Oelib_TemplateHelper */
 		$template = GeneralUtility::makeInstance('Tx_Oelib_TemplateHelper');
 		$template->init(array('templateFile' => $this->globalConfiguration->getAsString('emailTemplate')));
@@ -763,7 +763,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function sendEmails(array $addressesAndMessages) {
+	protected function sendEmails(array $addressesAndMessages) {
 		if ($this->getDefaultEmailAddress() === '') {
 			return;
 		}
@@ -990,7 +990,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function validateXml() {
+	protected function validateXml() {
 		$validationResult = '';
 		$schemaFile = $this->globalConfiguration->getAsString('openImmoSchema');
 
@@ -1022,7 +1022,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function logValidationResult($validationResult) {
+	protected function logValidationResult($validationResult) {
 		switch ($validationResult) {
 			case '':
 				$this->addToLogEntry($this->getTranslator()->translate('message_successful_validation') . LF);
@@ -1104,7 +1104,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return string[] names files which must not be copied
 	 */
-	private function findFileNamesOfDeletedRecords(array $records) {
+	protected function findFileNamesOfDeletedRecords(array $records) {
 		$filesNotToCopy = array();
 
 		foreach ($records as $record) {
@@ -1167,7 +1167,7 @@ class tx_realty_openImmoImport {
 	 * @return string basename of the deleted file or an empty string if
 	 *                no file was deleted
 	 */
-	private function deleteFile($pathOfFile) {
+	protected function deleteFile($pathOfFile) {
 		$removedFile = '';
 		if (in_array($pathOfFile, $this->filesToDelete, TRUE)) {
 			GeneralUtility::rmdir($pathOfFile, TRUE);
@@ -1219,7 +1219,7 @@ class tx_realty_openImmoImport {
 	 * @return string object number, may be empty if no object number
 	 *                was set or if the realty object is not initialized
 	 */
-	private function getObjectNumberFromRealtyObject() {
+	protected function getObjectNumberFromRealtyObject() {
 		if ($this->realtyObject === NULL || $this->realtyObject->isDead()) {
 			return '';
 		}
@@ -1264,7 +1264,7 @@ class tx_realty_openImmoImport {
 	 * @return bool TRUE it is allowed by configuration to use the
 	 *                 owner's data, FALSE otherwise
 	 */
-	private function mayUseOwnerData() {
+	protected function mayUseOwnerData() {
 		return $this->globalConfiguration->getAsBoolean('useFrontEndUserDataAsContactDataForImportedRecords');
 	}
 
@@ -1275,7 +1275,7 @@ class tx_realty_openImmoImport {
 	 *
 	 * @return void
 	 */
-	private function setContactEmailOfRealtyObject($address) {
+	protected function setContactEmailOfRealtyObject($address) {
 		if (!is_object($this->realtyObject)) {
 			return;
 		}

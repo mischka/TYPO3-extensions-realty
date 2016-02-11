@@ -49,7 +49,7 @@ class tx_realty_pi1_ErrorView extends tx_realty_pi1_FrontEndView {
 	 * @return string linked please-login error message with a redirect URL to
 	 *                the current page, will not be empty
 	 */
-	private function getLinkedPleaseLogInMessage() {
+	protected function getLinkedPleaseLogInMessage() {
 		$piVars = $this->piVars;
 		unset($piVars['DATA']);
 

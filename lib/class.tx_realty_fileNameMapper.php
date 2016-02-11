@@ -28,17 +28,17 @@ class tx_realty_fileNameMapper {
 	 *
 	 * @var string[]
 	 */
-	private $fileNames = array();
+	protected $fileNames = array();
 
 	/**
 	 * @var string path of the folder in which to check whether a file exists
 	 */
-	private $destinationPath = '';
+	protected $destinationPath = '';
 
 	/**
 	 * @var BasicFileUtility
 	 */
-	private static $fileFunctions = NULL;
+	protected static $fileFunctions = NULL;
 
 	/**
 	 * Constructor.
@@ -84,7 +84,7 @@ class tx_realty_fileNameMapper {
 	 * @return string cleaned original file name extended with a unique suffix,
 	 *                will not be empty
 	 */
-	private function getUniqueFileName($originalFileName) {
+	protected function getUniqueFileName($originalFileName) {
 		$splittedFileName = GeneralUtility::split_fileref($originalFileName);
 		$newFileName = $this->getCleanedFileNameBody(
 				$splittedFileName['filebody']
@@ -108,7 +108,7 @@ class tx_realty_fileNameMapper {
 	 *
 	 * @return string cleaned file name body, will not be empty
 	 */
-	private function getCleanedFileNameBody($fileNameBody) {
+	protected function getCleanedFileNameBody($fileNameBody) {
 		if (self::$fileFunctions === NULL) {
 			self::$fileFunctions = GeneralUtility::makeInstance(BasicFileUtility::class);
 		}
@@ -123,7 +123,7 @@ class tx_realty_fileNameMapper {
 	 *
 	 * @return void
 	 */
-	private function createNewFileName(&$fileName) {
+	protected function createNewFileName(&$fileName) {
 		$splittedFileName = GeneralUtility::split_fileref($fileName);
 
 		$matches = array();

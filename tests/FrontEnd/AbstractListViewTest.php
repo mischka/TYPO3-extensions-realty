@@ -37,91 +37,91 @@ class tx_realty_FrontEnd_AbstractListViewTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_tests_fixtures_TestingListView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int UID of the first dummy realty object
 	 */
-	private $firstRealtyUid = 0;
+	protected $firstRealtyUid = 0;
 	/**
 	 * @var string object number for the first dummy realty object
 	 */
-	private static $firstObjectNumber = '1';
+	protected static $firstObjectNumber = '1';
 	/**
 	 * @var string title for the first dummy realty object
 	 */
-	private static $firstObjectTitle = 'a title';
+	protected static $firstObjectTitle = 'a title';
 
 	/**
 	 * @var int second dummy realty object
 	 */
-	private $secondRealtyUid = 0;
+	protected $secondRealtyUid = 0;
 	/**
 	 * @var string object number for the second dummy realty object
 	 */
-	private static $secondObjectNumber = '2';
+	protected static $secondObjectNumber = '2';
 	/**
 	 * @var string title for the second dummy realty object
 	 */
-	private static $secondObjectTitle = 'another title';
+	protected static $secondObjectTitle = 'another title';
 
 	/**
 	 * @var int first dummy city UID
 	 */
-	private $firstCityUid = 0;
+	protected $firstCityUid = 0;
 	/**
 	 * @var string title for the first dummy city
 	 */
-	private static $firstCityTitle = 'Bonn';
+	protected static $firstCityTitle = 'Bonn';
 
 	/**
 	 * @var int second dummy city UID
 	 */
-	private $secondCityUid = 0;
+	protected $secondCityUid = 0;
 	/**
 	 * @var string title for the second dummy city
 	 */
-	private static $secondCityTitle = 'bar city';
+	protected static $secondCityTitle = 'bar city';
 
 	/**
 	 * @var int PID of the single view page
 	 */
-	private $singlePid = 0;
+	protected $singlePid = 0;
 	/**
 	 * @var int PID of the alternate single view page
 	 */
-	private $otherSinglePid = 0;
+	protected $otherSinglePid = 0;
 	/**
 	 * @var int PID of the favorites page
 	 */
-	private $favoritesPid = 0;
+	protected $favoritesPid = 0;
 	/**
 	 * @var int login PID
 	 */
-	private $loginPid = 0;
+	protected $loginPid = 0;
 	/**
 	 * @var int system folder PID
 	 */
-	private $systemFolderPid = 0;
+	protected $systemFolderPid = 0;
 	/**
 	 * @var int sub-system folder PID
 	 */
-	private $subSystemFolderPid = 0;
+	protected $subSystemFolderPid = 0;
 
 	/**
 	 * @var ContentObjectRenderer|PHPUnit_Framework_MockObject_MockObject
 	 */
-	private $contentObject = NULL;
+	protected $contentObject = NULL;
 
 	/**
 	 * @var array[]
 	 */
-	private $imageConfigurations = array();
+	protected $imageConfigurations = array();
 
 	protected function setUp() {
 		Tx_Oelib_HeaderProxyFactory::getInstance()->enableTestMode();
@@ -162,7 +162,7 @@ class tx_realty_FrontEnd_AbstractListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return TypoScriptFrontendController
 	 */
-	private function getFrontEndController() {
+	protected function getFrontEndController() {
 		return $GLOBALS['TSFE'];
 	}
 
@@ -171,7 +171,7 @@ class tx_realty_FrontEnd_AbstractListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyObjects() {
+	protected function createDummyObjects() {
 		$this->createDummyCities();
 		$this->firstRealtyUid = $this->testingFramework->createRecord(
 			'tx_realty_objects',
@@ -204,7 +204,7 @@ class tx_realty_FrontEnd_AbstractListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyCities() {
+	protected function createDummyCities() {
 		$this->firstCityUid = $this->testingFramework->createRecord(
 			'tx_realty_cities',
 			array('title' => self::$firstCityTitle)
@@ -220,7 +220,7 @@ class tx_realty_FrontEnd_AbstractListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyPages() {
+	protected function createDummyPages() {
 		$this->loginPid = $this->testingFramework->createFrontEndPage();
 		$this->singlePid = $this->testingFramework->createFrontEndPage();
 		$this->otherSinglePid = $this->testingFramework->createFrontEndPage();
@@ -235,7 +235,7 @@ class tx_realty_FrontEnd_AbstractListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function denyAccess() {
+	protected function denyAccess() {
 		$this->fixture->setConfigurationValue('requireLoginForSingleViewPage', TRUE);
 		Tx_Oelib_FrontEndLoginManager::getInstance()->logInUser(NULL);
 	}
@@ -245,7 +245,7 @@ class tx_realty_FrontEnd_AbstractListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function allowAccess() {
+	protected function allowAccess() {
 		$this->fixture->setConfigurationValue('requireLoginForSingleViewPage', FALSE);
 	}
 
@@ -258,7 +258,7 @@ class tx_realty_FrontEnd_AbstractListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createContentMock() {
+	protected function createContentMock() {
 		$this->contentObject = $this->getMock(ContentObjectRenderer::class, array('typoLink_URL', 'IMAGE'));
 		$this->contentObject->expects(self::any())->method('typoLink_URL')
 			->will(self::returnCallback(array($this, 'getTypoLinkUrl')));

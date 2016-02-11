@@ -25,17 +25,17 @@ class tx_realty_FrontEnd_FormatterTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1_Formatter
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var tx_realty_Model_RealtyObject a dummy realty object
 	 */
-	private $realtyObject;
+	protected $realtyObject;
 
 	/**
 	 * @var int static_info_tables UID of Germany
@@ -69,7 +69,7 @@ class tx_realty_FrontEnd_FormatterTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return TypoScriptFrontendController
 	 */
-	private function getFrontEndController() {
+	protected function getFrontEndController() {
 		return $GLOBALS['TSFE'];
 	}
 

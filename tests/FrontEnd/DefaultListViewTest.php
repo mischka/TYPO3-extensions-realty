@@ -26,45 +26,45 @@ class tx_realty_FrontEnd_DefaultListViewTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1_DefaultListView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int UID of the first dummy realty object
 	 */
-	private $firstRealtyUid = 0;
+	protected $firstRealtyUid = 0;
 
 	/**
 	 * @var int second dummy realty object
 	 */
-	private $secondRealtyUid = 0;
+	protected $secondRealtyUid = 0;
 
 	/**
 	 * @var int first dummy city UID
 	 */
-	private $firstCityUid = 0;
+	protected $firstCityUid = 0;
 	/**
 	 * @var string title for the first dummy city
 	 */
-	private static $firstCityTitle = 'Bonn';
+	protected static $firstCityTitle = 'Bonn';
 
 	/**
 	 * @var int second dummy city UID
 	 */
-	private $secondCityUid = 0;
+	protected $secondCityUid = 0;
 	/**
 	 * @var string title for the second dummy city
 	 */
-	private static $secondCityTitle = 'bar city';
+	protected static $secondCityTitle = 'bar city';
 
 	/**
 	 * @var int system folder PID
 	 */
-	private $systemFolderPid = 0;
+	protected $systemFolderPid = 0;
 
 	protected function setUp() {
 		Tx_Oelib_HeaderProxyFactory::getInstance()->enableTestMode();
@@ -99,7 +99,7 @@ class tx_realty_FrontEnd_DefaultListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return TypoScriptFrontendController
 	 */
-	private function getFrontEndController() {
+	protected function getFrontEndController() {
 		return $GLOBALS['TSFE'];
 	}
 
@@ -108,7 +108,7 @@ class tx_realty_FrontEnd_DefaultListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyObjects() {
+	protected function createDummyObjects() {
 		$this->createDummyCities();
 		$this->firstRealtyUid = $this->testingFramework->createRecord(
 			'tx_realty_objects',
@@ -133,7 +133,7 @@ class tx_realty_FrontEnd_DefaultListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyCities() {
+	protected function createDummyCities() {
 		$this->firstCityUid = $this->testingFramework->createRecord(
 			'tx_realty_cities',
 			array('title' => self::$firstCityTitle)

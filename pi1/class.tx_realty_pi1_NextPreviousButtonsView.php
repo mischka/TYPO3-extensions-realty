@@ -75,7 +75,7 @@ class tx_realty_pi1_NextPreviousButtonsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return bool TRUE if the buttons can be rendered, FALSE otherwise
 	 */
-	private function canButtonsBeRendered() {
+	protected function canButtonsBeRendered() {
 		if (!$this->getConfValueBoolean('enableNextPreviousButtons')) {
 			return FALSE;
 		}
@@ -113,7 +113,7 @@ class tx_realty_pi1_NextPreviousButtonsView extends tx_realty_pi1_FrontEndView {
 	 * @return array the sanitized piVars, will be empty if an empty array was
 	 *               given.
 	 */
-	private function sanitizePiVars() {
+	protected function sanitizePiVars() {
 		$sanitizedPiVars = array();
 
 		$sanitizedPiVars['recordPosition'] = (isset($this->piVars['recordPosition']))
@@ -139,7 +139,7 @@ class tx_realty_pi1_NextPreviousButtonsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return string[] the data stored in the listViewLimitation string as array.
 	 */
-	private function sanitizeAndSplitListViewLimitation() {
+	protected function sanitizeAndSplitListViewLimitation() {
 		$rawData = json_decode($this->piVars['listViewLimitation'], TRUE);
 		if (!is_array($rawData) || empty($rawData)) {
 			return array();
@@ -173,7 +173,7 @@ class tx_realty_pi1_NextPreviousButtonsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return int the UID of the previous record, will be > 0
 	 */
-	private function getPreviousRecordUid() {
+	protected function getPreviousRecordUid() {
 		return $this->getRecordAtPosition($this->piVars['recordPosition'] - 1);
 	}
 
@@ -185,7 +185,7 @@ class tx_realty_pi1_NextPreviousButtonsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return int the UID of the next record, will be >= 0
 	 */
-	private function getNextRecordUid() {
+	protected function getNextRecordUid() {
 		return $this->getRecordAtPosition($this->piVars['recordPosition'] + 1);
 	}
 
@@ -197,7 +197,7 @@ class tx_realty_pi1_NextPreviousButtonsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return int the UID of the record at the given position, will be >= 0
 	 */
-	private function getRecordAtPosition($recordPosition) {
+	protected function getRecordAtPosition($recordPosition) {
 		$contentData = Tx_Oelib_Db::selectSingle(
 			'*', 'tt_content',
 			'uid = ' . (int)$this->piVars['listUid'] . Tx_Oelib_Db::enableFields('tt_content')
@@ -231,7 +231,7 @@ class tx_realty_pi1_NextPreviousButtonsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return string the htmlspecialchared URL for the button, will not be empty
 	 */
-	private function getButtonUrl($recordPosition, $recordUid) {
+	protected function getButtonUrl($recordPosition, $recordUid) {
 		$additionalParameters = $this->piVars;
 		$additionalParameters['recordPosition'] = $recordPosition;
 		$additionalParameters['showUid'] = $recordUid;

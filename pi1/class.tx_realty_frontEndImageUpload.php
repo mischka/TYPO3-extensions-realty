@@ -26,7 +26,7 @@ class tx_realty_frontEndImageUpload extends tx_realty_frontEndForm {
 	/**
 	 * @var string stores the type of validation error if there was one
 	 */
-	private $validationError = '';
+	protected $validationError = '';
 
 
 	////////////////////////////////
@@ -197,7 +197,7 @@ class tx_realty_frontEndImageUpload extends tx_realty_frontEndForm {
 	 * @return string unique file name used under wich this file is stored
 	 *                in the upload directory, will not be empty
 	 */
-	private function getFormidablesUniqueFileName($fileName) {
+	protected function getFormidablesUniqueFileName($fileName) {
 		$this->makeFormCreator();
 
 		return ($this->isTestMode)
@@ -210,7 +210,7 @@ class tx_realty_frontEndImageUpload extends tx_realty_frontEndForm {
 	 *
 	 * @return string URL of the current page, will not be empty
 	 */
-	private function getUrlOfCurrentPage() {
+	protected function getUrlOfCurrentPage() {
 		return GeneralUtility::locationHeaderUrl(
 			$this->cObj->typoLink_URL(
 				array(
@@ -233,7 +233,7 @@ class tx_realty_frontEndImageUpload extends tx_realty_frontEndForm {
 	 *
 	 * @return string listed images with thumbnails in HTML, will not be empty
 	 */
-	private function getRenderedImageList(Tx_Oelib_List $images) {
+	protected function getRenderedImageList(Tx_Oelib_List $images) {
 		$result = '';
 
 		$index = 0;

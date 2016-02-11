@@ -34,12 +34,12 @@ class tx_realty_pi1_GoogleMapsView extends tx_realty_pi1_FrontEndView {
 	/**
 	 * @var tx_realty_mapMarker[]
 	 */
-	private $mapMarkers = array();
+	protected $mapMarkers = array();
 
 	/**
 	 * @var bool whether the constructor is called in test mode
 	 */
-	private $isTestMode = FALSE;
+	protected $isTestMode = FALSE;
 
 	/**
 	 * @var int the Google Maps zoom factor for a single marker
@@ -110,7 +110,7 @@ class tx_realty_pi1_GoogleMapsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function addGoogleMapToHtmlHead() {
+	protected function addGoogleMapToHtmlHead() {
 		$generalGoogleMapsJavaScript = '<script type="text/javascript" ' .
 			'src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>' . LF;
 		$createMapJavaScript = '<script type="text/javascript">' . LF .
@@ -207,7 +207,7 @@ class tx_realty_pi1_GoogleMapsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return string link tag, will be empty if no link text was provided
 	 */
-	private function createLinkToSingleViewPage($linkText, $realtyObjectUid) {
+	protected function createLinkToSingleViewPage($linkText, $realtyObjectUid) {
 		if ($linkText == '') {
 			return '';
 		}

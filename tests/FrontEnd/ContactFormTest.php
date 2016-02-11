@@ -28,17 +28,17 @@ class tx_realty_FrontEnd_ContactFormTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_contactForm
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int dummy realty object ID
 	 */
-	private $realtyUid = NULL;
+	protected $realtyUid = NULL;
 
 	/**
 	 * @var string title for the dummy realty object
@@ -53,7 +53,7 @@ class tx_realty_FrontEnd_ContactFormTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var MailMessage|PHPUnit_Framework_MockObject_MockObject
 	 */
-	private $message = NULL;
+	protected $message = NULL;
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');
@@ -108,7 +108,7 @@ class tx_realty_FrontEnd_ContactFormTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return ContentObjectRenderer
 	 */
-	private function createContentMock() {
+	protected function createContentMock() {
 		$mock = $this->getMock(ContentObjectRenderer::class, array('getTypoLink_URL'));
 		$mock->expects(self::any())->method('getTypoLink_URL')
 			->will(self::returnCallback(array($this, 'getTypoLinkUrl')));

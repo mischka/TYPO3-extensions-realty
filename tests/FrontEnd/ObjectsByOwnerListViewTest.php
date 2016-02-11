@@ -31,32 +31,32 @@ class tx_realty_FrontEnd_ObjectsByOwnerListViewTest extends Tx_Phpunit_TestCase 
 	/**
 	 * @var tx_realty_pi1_ObjectsByOwnerListView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int the UID of a dummy object
 	 */
-	private $objectUid = 0;
+	protected $objectUid = 0;
 
 	/**
 	 * @var int the UID of a dummy city
 	 */
-	private $cityUid = 0;
+	protected $cityUid = 0;
 
 	/**
 	 * @var int the UID of the FE user who is the owner of the dummy object
 	 */
-	private $ownerUid = 0;
+	protected $ownerUid = 0;
 
 	/**
 	 * @var int system folder PID
 	 */
-	private $systemFolderPid = 0;
+	protected $systemFolderPid = 0;
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');
@@ -94,7 +94,7 @@ class tx_realty_FrontEnd_ObjectsByOwnerListViewTest extends Tx_Phpunit_TestCase 
 	 *
 	 * @return void
 	 */
-	private function createObjectWithOwner(array $userData = array()) {
+	protected function createObjectWithOwner(array $userData = array()) {
 		$owner = Tx_Oelib_MapperRegistry::get('tx_realty_Mapper_FrontEndUser')
 			->getLoadedTestingModel($userData);
 		$this->ownerUid = $owner->getUid();

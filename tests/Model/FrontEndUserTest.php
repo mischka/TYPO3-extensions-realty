@@ -24,12 +24,12 @@ class tx_realty_Model_FrontEndUserTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_Model_FrontEndUser
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');
@@ -59,7 +59,7 @@ class tx_realty_Model_FrontEndUserTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return int the UID of the created object record, will be > 0
 	 */
-	private function createObject($ownerUid = 0) {
+	protected function createObject($ownerUid = 0) {
 		return $this->testingFramework->createRecord(
 			'tx_realty_objects',
 			array(

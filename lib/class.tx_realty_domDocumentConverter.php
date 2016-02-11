@@ -112,7 +112,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @var string[][]
 	 */
-	private static $decimalFields = array(
+	protected static $decimalFields = array(
 		'sales_area' => array('flaechen' => 'verkaufsflaeche'),
 		'other_area' => array('flaechen' => 'sonstflaeche'),
 		'window_bank' => array('flaechen' => 'fensterfront'),
@@ -124,7 +124,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @var string[]
 	 */
-	private static $booleanFields = array(
+	protected static $booleanFields = array(
 		'show_address', 'heating_included', 'garden', 'barrier_free',
 		'elevator', 'has_air_conditioning', 'assisted_living', 'fitted_kitchen',
 		'has_pool', 'has_community_pool', 'with_hot_water',
@@ -135,28 +135,28 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @var string[]
 	 */
-	private static $richTextFields = array('description', 'equipment', 'location', 'misc');
+	protected static $richTextFields = array('description', 'equipment', 'location', 'misc');
 
 	/**
 	 * raw data of an OpenImmo record
 	 *
 	 * @var DOMXPath
 	 */
-	private $rawRealtyData = NULL;
+	protected $rawRealtyData = NULL;
 
 	/**
 	 * data which is the same for all realty records of one DOMDocument
 	 *
 	 * @var string[]
 	 */
-	private $universalRealtyData = array();
+	protected $universalRealtyData = array();
 
 	/**
 	 * imported data of a realty record
 	 *
 	 * @var array
 	 */
-	private $importedData = array();
+	protected $importedData = array();
 
 	/**
 	 * Number of the current record. Sometimes there are several realties in one
@@ -164,24 +164,24 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @var int
 	 */
-	private $recordNumber = 0;
+	protected $recordNumber = 0;
 
 	/**
 	 * @var int[]
 	 */
-	private static $cachedCountries = array();
+	protected static $cachedCountries = array();
 
 	/**
 	 * the mapper that creates unique file names for images and documents
 	 *
 	 * @var tx_realty_fileNameMapper
 	 */
-	private $fileNameMapper = NULL;
+	protected $fileNameMapper = NULL;
 
 	/**
 	 * @var tx_realty_translator
 	 */
-	private static $translator = NULL;
+	protected static $translator = NULL;
 
 	/**
 	 * Constructor.
@@ -261,7 +261,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function resetImportedData() {
+	protected function resetImportedData() {
 		$this->importedData = array();
 	}
 
@@ -274,7 +274,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function addUniversalData(array &$realtyDataArray) {
+	protected function addUniversalData(array &$realtyDataArray) {
 		$realtyDataArray = array_merge($realtyDataArray, $this->universalRealtyData);
 	}
 
@@ -284,7 +284,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchUniversalData() {
+	protected function fetchUniversalData() {
 		$this->universalRealtyData = $this->fetchEmployerAndAnid();
 	}
 
@@ -295,7 +295,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return string[] contains the elements 'employer' and 'openimmo_anid', will be empty if the nodes were not found
 	 */
-	private function fetchEmployerAndAnid() {
+	protected function fetchEmployerAndAnid() {
 		$result = array();
 
 		$columnNames = array(
@@ -335,7 +335,7 @@ class tx_realty_domDocumentConverter {
 	 * @return int number of realties in the current OpenImmo record, 0
 	 *                 if no realty data was found
 	 */
-	private function getNumberOfRecords() {
+	protected function getNumberOfRecords() {
 		$nodeList = $this->getListedRealtyObjects();
 
 		if ($nodeList !== NULL) {
@@ -356,7 +356,7 @@ class tx_realty_domDocumentConverter {
 	 * @return array data of the realty object, empty if the DOMNode is
 	 *               not convertible
 	 */
-	private function getRealtyArray() {
+	protected function getRealtyArray() {
 		$this->fetchNodeValues();
 		$this->fetchImages();
 		$this->fetchDocuments();
@@ -393,7 +393,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function replaceImportedBooleanLikeStrings() {
+	protected function replaceImportedBooleanLikeStrings() {
 		foreach (self::$booleanFields as $key) {
 			$value = $this->importedData[$key];
 			if ($this->isBooleanLikeStringTrue($value)) {
@@ -413,7 +413,7 @@ class tx_realty_domDocumentConverter {
 	 * @return bool
 	 *         TRUE if $booleanLikeString evaluates to TRUE, FALSE otherwise
 	 */
-	private function isBooleanLikeStringTrue($booleanLikeString) {
+	protected function isBooleanLikeStringTrue($booleanLikeString) {
 		$trimmedString = strtolower(trim($booleanLikeString, '"'));
 
 		return ($trimmedString === 'true') || ($trimmedString === '1');
@@ -428,7 +428,7 @@ class tx_realty_domDocumentConverter {
 	 * @return bool
 	 *         TRUE if $booleanLikeString evaluates to FALSE, FALSE otherwise
 	 */
-	private function isBooleanLikeStringFalse($booleanLikeString) {
+	protected function isBooleanLikeStringFalse($booleanLikeString) {
 		$trimmedString = strtolower(trim($booleanLikeString, '"'));
 
 		return ($trimmedString === 'false') || ($trimmedString === '0');
@@ -442,7 +442,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function substituteSurplusDecimals() {
+	protected function substituteSurplusDecimals() {
 		foreach ($this->importedData as $key => &$value) {
 			$intValue = (int)$value;
 			if (is_numeric($value) && $intValue == $value && ($key !== 'zip')) {
@@ -457,7 +457,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchNodeValues() {
+	protected function fetchNodeValues() {
 		foreach ($this->propertyArray as $key => $path) {
 			$currentDomNode = $this->findFirstGrandchild(key($path), implode('', $path));
 			$this->addImportedData($key, $currentDomNode->nodeValue);
@@ -480,7 +480,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function appendStreetNumber() {
+	protected function appendStreetNumber() {
 		if (!$this->importedData['street'] || ((string)$this->importedData['street'] === '')) {
 			return;
 		}
@@ -499,7 +499,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function setTitleForPets() {
+	protected function setTitleForPets() {
 		if (!isset($this->importedData['pets'])) {
 			return;
 		}
@@ -517,7 +517,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return tx_realty_translator the cached translator object
 	 */
-	private function getTranslator() {
+	protected function getTranslator() {
 		if (!self::$translator) {
 			self::$translator = GeneralUtility::makeInstance('tx_realty_translator');
 		}
@@ -531,7 +531,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function trySecondContactEmailIfEmailNotFound() {
+	protected function trySecondContactEmailIfEmailNotFound() {
 		if (isset($this->importedData['contact_email'])) {
 			return;
 		}
@@ -546,7 +546,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchImages() {
+	protected function fetchImages() {
 		$this->addImportedDataIfValueIsNonEmpty('images', $this->createRecordsForImages());
 	}
 
@@ -604,7 +604,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchDocuments() {
+	protected function fetchDocuments() {
 		$this->addImportedDataIfValueIsNonEmpty('documents', $this->importDocuments());
 	}
 
@@ -650,7 +650,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchEquipmentAttributes() {
+	protected function fetchEquipmentAttributes() {
 		$rawAttributes = array();
 
 		foreach (array('serviceleistungen', 'fahrstuhl', 'kueche') as $grandchildName) {
@@ -681,7 +681,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchCategoryAttributes() {
+	protected function fetchCategoryAttributes() {
 		$this->fetchHouseType();
 
 		$nodeWithAttributes = $this->findFirstGrandchild('objektkategorie', 'vermarktungsart');
@@ -717,7 +717,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchHouseType() {
+	protected function fetchHouseType() {
 		$nodeContainingAttributeNode = $this->findFirstGrandchild('objektkategorie', 'objektart');
 		if (!$nodeContainingAttributeNode) {
 			return;
@@ -746,7 +746,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchHeatingType() {
+	protected function fetchHeatingType() {
 		$heatingTypeNode = $this->findFirstGrandchild('ausstattung', 'heizungsart');
 		$firingTypeNode = $this->findFirstGrandchild('ausstattung', 'befeuerung');
 		$attributes = array_merge(
@@ -782,7 +782,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchParkingSpaceType() {
+	protected function fetchParkingSpaceType() {
 		$nodeWithAttributes = $this->findFirstGrandchild('ausstattung', 'stellplatzart');
 		$attributes = $this->fetchLowercasedDomAttributes($nodeWithAttributes);
 
@@ -796,7 +796,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchGaragePrice() {
+	protected function fetchGaragePrice() {
 		$nodeWithAttributes = $this->findFirstGrandchild(
 			'preise',
 			// 'stp_*' exists for each defined type of 'stellplatz'
@@ -817,7 +817,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchCurrency() {
+	protected function fetchCurrency() {
 		$nodeWithAttributes = $this->findFirstGrandchild('preise', 'waehrung');
 		$attributes = $this->fetchLowercasedDomAttributes($nodeWithAttributes);
 
@@ -832,7 +832,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchState() {
+	protected function fetchState() {
 		$nodeWithAttributes = $this->findFirstGrandchild('zustand_angaben', 'zustand');
 		$attributes = $this->fetchLowercasedDomAttributes($nodeWithAttributes);
 		$possibleStates = array(
@@ -861,7 +861,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchStatus() {
+	protected function fetchStatus() {
 		$node = $this->findFirstGrandchild('verwaltung_objekt', 'vermietet');
 		if ($node === NULL) {
 			return;
@@ -879,7 +879,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchFlooring() {
+	protected function fetchFlooring() {
 		$flooringNode = $this->findFirstGrandchild('ausstattung', 'boden');
 		$attributes = $this->fetchLowercasedDomAttributes($flooringNode);
 
@@ -915,7 +915,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchFurnishingCategory() {
+	protected function fetchFurnishingCategory() {
 		$nodeWithAttributes = $this->findFirstGrandchild('ausstattung', 'ausstatt_kategorie');
 		$furnishingCategory = strtolower($nodeWithAttributes->nodeValue);
 
@@ -936,7 +936,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchValueForOldOrNewBuilding() {
+	protected function fetchValueForOldOrNewBuilding() {
 		$attributesArray = $this->fetchLowercasedDomAttributes($this->findFirstGrandchild('zustand_angaben', 'alter'));
 
 		if ($attributesArray['alter_attr'] === 'neubau') {
@@ -952,7 +952,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchAction() {
+	protected function fetchAction() {
 		$nodeWithAttributes = $this->findFirstGrandchild('verwaltung_techn', 'aktion');
 		// The node is valid when there is a node name, it does not need to
 		// have attributes.
@@ -966,7 +966,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchLanguage() {
+	protected function fetchLanguage() {
 		$userDefinedAnyFieldNode = $this->findFirstGrandchild('verwaltung_objekt', 'user_defined_anyfield');
 
 		if ($userDefinedAnyFieldNode) {
@@ -980,7 +980,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchGeoCoordinates() {
+	protected function fetchGeoCoordinates() {
 		$geoCoordinatesNode = $this->findFirstGrandchild('geo', 'geokoordinaten');
 		$attributes = $this->fetchLowercasedDomAttributes($geoCoordinatesNode);
 
@@ -1003,7 +1003,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchCountry() {
+	protected function fetchCountry() {
 		$nodeWithAttributes = $this->findFirstGrandchild('geo', 'land');
 		$attributes = $this->fetchLowercasedDomAttributes($nodeWithAttributes);
 
@@ -1037,7 +1037,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchEnergyCertificateIssueDate() {
+	protected function fetchEnergyCertificateIssueDate() {
 		$node = $this->findFirstGrandchild('energiepass', 'ausstelldatum');
 		$nodeValue = $node->nodeValue;
 		if ($nodeValue !== NULL) {
@@ -1054,7 +1054,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchEnergyCertificateType() {
+	protected function fetchEnergyCertificateType() {
 		$node = $this->findFirstGrandchild('energiepass', 'epart');
 		if ($node === NULL || $node->nodeValue === NULL) {
 			return;
@@ -1076,7 +1076,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchEnergyCertificateYear() {
+	protected function fetchEnergyCertificateYear() {
 		$node = $this->findFirstGrandchild('energiepass', 'jahrgang');
 		if ($node === NULL || $node->nodeValue === NULL) {
 			return;
@@ -1100,7 +1100,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchBuildingType() {
+	protected function fetchBuildingType() {
 		$node = $this->findFirstGrandchild('energiepass', 'gebaeudeart');
 		if ($node === NULL || $node->nodeValue === NULL) {
 			return;
@@ -1125,7 +1125,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return string formatted string
 	 */
-	private function getFormattedString(array $dataToFormat) {
+	protected function getFormattedString(array $dataToFormat) {
 		return ucwords(strtolower(implode(', ', $dataToFormat)));
 	}
 
@@ -1148,7 +1148,7 @@ class tx_realty_domDocumentConverter {
 	 *                     if $childNodeName is not set, can be empty if these
 	 *                     names do not exist
 	 */
-	private function getNodeListFromRawData($nodeName, $childNodeName = '', $contextNode = NULL) {
+	protected function getNodeListFromRawData($nodeName, $childNodeName = '', $contextNode = NULL) {
 		$queryString = '';
 		$isContextNodeValid = FALSE;
 		if ($contextNode && (get_parent_class($contextNode) === 'DOMNode')) {
@@ -1208,7 +1208,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return bool TRUE if the root node is named 'openimmo' or 'immoxml', FALSE otherwise
 	 */
-	private function hasValidRootNode() {
+	protected function hasValidRootNode() {
 		$rootNode = $this->rawRealtyData->query('//*[local-name()="openimmo"] | //*[local-name()="immoxml"]');
 
 		return (bool)$rootNode->item(0);
@@ -1221,7 +1221,7 @@ class tx_realty_domDocumentConverter {
 	 * @return DOMNodeList list of nodes named 'immobilie', NULL if none were
 	 *                     found
 	 */
-	private function getListedRealtyObjects() {
+	protected function getListedRealtyObjects() {
 		return $this->getNodeListFromRawData('immobilie');
 	}
 
@@ -1271,7 +1271,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function addImportedData($key, $value) {
+	protected function addImportedData($key, $value) {
 		$this->addElementToArray($this->importedData, $key, $value);
 	}
 
@@ -1284,7 +1284,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function addImportedDataIfValueIsNonEmpty($key, $value) {
+	protected function addImportedDataIfValueIsNonEmpty($key, $value) {
 		if (empty($value)) {
 			return;
 		}
@@ -1301,7 +1301,7 @@ class tx_realty_domDocumentConverter {
 	 * @return bool TRUE if the the element exists and is non-empty,
 	 *                 FALSE otherwise
 	 */
-	private function isElementSetAndNonEmpty($key, array $array) {
+	protected function isElementSetAndNonEmpty($key, array $array) {
 		return (isset($array[$key]) && !empty($array[$key]));
 	}
 
@@ -1340,7 +1340,7 @@ class tx_realty_domDocumentConverter {
 	 * @return string[] lowercased attributes and attribute values, empty if
 	 *               there are no attributes
 	 */
-	private function fetchLowercasedDomAttributes($nodeWithAttributes) {
+	protected function fetchLowercasedDomAttributes($nodeWithAttributes) {
 		$result = array();
 
 		foreach ($this->fetchDomAttributes($nodeWithAttributes) as $key => $value) {
@@ -1360,7 +1360,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function cacheCountry($key, $value) {
+	protected function cacheCountry($key, $value) {
 		self::$cachedCountries[$key] = $value;
 	}
 
@@ -1372,7 +1372,7 @@ class tx_realty_domDocumentConverter {
 	 *
 	 * @return void
 	 */
-	private function fetchRent() {
+	protected function fetchRent() {
 		$nodeWithAttributes = $this->findFirstGrandchild('preise', 'nettokaltmiete');
 
 		if (!$nodeWithAttributes || ($nodeWithAttributes->nodeValue === '')) {

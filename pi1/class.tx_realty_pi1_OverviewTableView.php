@@ -53,7 +53,7 @@ class tx_realty_pi1_OverviewTableView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return bool TRUE if at least one row has been filled, FALSE otherwise
 	 */
-	private function createTableRows($uid) {
+	protected function createTableRows($uid) {
 		$fieldNames = $this->getFieldNames($uid);
 		if (empty($fieldNames)) {
 			$this->hideSubparts('overview_row');

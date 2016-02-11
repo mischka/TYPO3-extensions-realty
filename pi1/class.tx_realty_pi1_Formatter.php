@@ -42,7 +42,7 @@ class tx_realty_pi1_Formatter extends Tx_Oelib_Templatehelper {
 	/**
 	 * @var int UID of the realty object to show
 	 */
-	private $showUid = 0;
+	protected $showUid = 0;
 
 	/**
 	 * The constructor. Initializes the temlatehelper and loads the realty
@@ -272,7 +272,7 @@ class tx_realty_pi1_Formatter extends Tx_Oelib_Templatehelper {
 	 *                will be empty if the value of $key combined with
 	 *                label_[$key] is not a locallang key
 	 */
-	private function getLabelForValidNonZeroProperty($key) {
+	protected function getLabelForValidNonZeroProperty($key) {
 		$localizedStrings = array();
 
 		foreach (GeneralUtility::trimExplode(',', $this->getRealtyObject()->getProperty($key), TRUE) as $value) {
@@ -296,7 +296,7 @@ class tx_realty_pi1_Formatter extends Tx_Oelib_Templatehelper {
 	 *        will be empty if $value combined with label_[$key] is not a
 	 *        locallang key
 	 */
-	private function getLabelForValidProperty($key, $value) {
+	protected function getLabelForValidProperty($key, $value) {
 		$locallangKey = 'label_' . $key . '_' . $value;
 		$translatedLabel = $this->translate($locallangKey);
 
@@ -316,7 +316,7 @@ class tx_realty_pi1_Formatter extends Tx_Oelib_Templatehelper {
 	 *                decimalSeparator and areaUnit from the TS setup, may
 	 *                be an empty string
 	 */
-	private function getFormattedArea($key) {
+	protected function getFormattedArea($key) {
 		return $this->getFormattedNumber($key, $this->translate('label_squareMeters'));
 	}
 
@@ -333,7 +333,7 @@ class tx_realty_pi1_Formatter extends Tx_Oelib_Templatehelper {
 	 * @return string HTML for the number in the field with a currency
 	 *                symbol appended, may be an empty string
 	 */
-	private function getFormattedPrice($key) {
+	protected function getFormattedPrice($key) {
 		$currency = $this->getRealtyObject()->getProperty('currency');
 
 		if ($currency == '') {
@@ -362,7 +362,7 @@ class tx_realty_pi1_Formatter extends Tx_Oelib_Templatehelper {
 	 *
 	 * @return string HTML for the formatted number in the field, may be an empty string
 	 */
-	private function getFormattedNumber($key, $unit) {
+	protected function getFormattedNumber($key, $unit) {
 		$rawValue = $this->getRealtyObject()->getProperty($key);
 		if (($rawValue == '') || ((float)$rawValue == 0.0)) {
 			return '';
@@ -378,7 +378,7 @@ class tx_realty_pi1_Formatter extends Tx_Oelib_Templatehelper {
 	 *
 	 * @return int UID of the realty record to show, will be > 0
 	 */
-	private function getUid() {
+	protected function getUid() {
 		return $this->showUid;
 	}
 
@@ -391,7 +391,7 @@ class tx_realty_pi1_Formatter extends Tx_Oelib_Templatehelper {
 	 *
 	 * @return string the number in the field formatted and stripped of trailing zeros, will be empty if the value is zero
 	 */
-	private function getFormattedDecimal($key, $decimals = 2) {
+	protected function getFormattedDecimal($key, $decimals = 2) {
 		$value = str_replace(',', '.', $this->getRealtyObject()->getProperty($key));
 
 		return $this->formatDecimal((float)$value, $decimals);

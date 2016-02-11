@@ -26,16 +26,16 @@ class tx_realty_FrontEnd_GoogleMapsViewTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1_GoogleMapsView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int dummy realty object
 	 */
-	private $realtyUid = 42;
+	protected $realtyUid = 42;
 
 	/**
 	 * @var tx_realty_Mapper_RealtyObject|PHPUnit_Framework_MockObject_MockObject
@@ -110,7 +110,7 @@ class tx_realty_FrontEnd_GoogleMapsViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return TypoScriptFrontendController
 	 */
-	private function getFrontEndController() {
+	protected function getFrontEndController() {
 		return $GLOBALS['TSFE'];
 	}
 

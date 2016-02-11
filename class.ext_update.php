@@ -84,7 +84,7 @@ class ext_update {
 	 *
 	 * @return bool TRUE if the relation needs to be updated, FALSE otherwise
 	 */
-	private function needsToUpdateDistricts() {
+	protected function needsToUpdateDistricts() {
 		if (!Tx_Oelib_Db::tableHasColumn('tx_realty_districts', 'city')) {
 			return FALSE;
 		}
@@ -99,7 +99,7 @@ class ext_update {
 	 *
 	 * @return string output of the update function, will not be empty
 	 */
-	private function updateDistricts() {
+	protected function updateDistricts() {
 		$result = '<h2>Updating district-city relations</h2>' . LF .
 			'<table summary="districts and cities">' . LF .
 			'<thead>' . LF .
@@ -148,7 +148,7 @@ class ext_update {
 	 *               "city" and "district" with the corresponding UIDs, will be
 	 *               empty if there are no matches
 	 */
-	private function findDistrictsToAssignCity() {
+	protected function findDistrictsToAssignCity() {
 		$districtsWithoutCity = Tx_Oelib_Db::selectColumnForMultiple(
 			'uid', 'tx_realty_districts',
 			'city = 0' . Tx_Oelib_Db::enableFields('tx_realty_districts')
@@ -172,7 +172,7 @@ class ext_update {
 	 *
 	 * @return bool TRUE if the relation needs to be updated, FALSE otherwise
 	 */
-	private function needsToUpdateImages() {
+	protected function needsToUpdateImages() {
 		$hasBothColumns = Tx_Oelib_Db::tableHasColumn('tx_realty_images', 'realty_object_uid')
 			&& Tx_Oelib_Db::tableHasColumn('tx_realty_images', 'object');
 		if (!$hasBothColumns) {
@@ -190,7 +190,7 @@ class ext_update {
 	 *
 	 * @return string output of the update function, will not be empty
 	 */
-	private function updateImages() {
+	protected function updateImages() {
 		$databaseConnection = Tx_Oelib_Db::getDatabaseConnection();
 
 		$result = '<h2>Updating image-object relations</h2>' . LF;
@@ -216,7 +216,7 @@ class ext_update {
 	 *
 	 * @return bool TRUE if the status needs to be updated, FALSE otherwise
 	 */
-	private function needsToUpdateStatus() {
+	protected function needsToUpdateStatus() {
 		if (!Tx_Oelib_Db::tableHasColumn('tx_realty_objects', 'rented')
 			|| !Tx_Oelib_Db::tableHasColumn('tx_realty_objects', 'status')
 		) {
@@ -233,7 +233,7 @@ class ext_update {
 	 *
 	 * @return string output of the update function, will not be empty
 	 */
-	private function updateStatus() {
+	protected function updateStatus() {
 		$result = '<h2>Updating the object status</h2>' . LF;
 
 		$databaseConnection = Tx_Oelib_Db::getDatabaseConnection();
@@ -254,7 +254,7 @@ class ext_update {
 	 *
 	 * @return bool TRUE if the field
 	 */
-	private function needsToUpdatePhoneNumbers() {
+	protected function needsToUpdatePhoneNumbers() {
 		$hasColumns = Tx_Oelib_Db::tableHasColumn('tx_realty_objects', 'phone_direct_extension')
 			&& Tx_Oelib_Db::tableHasColumn('tx_realty_objects', 'contact_phone');
 		if (!$hasColumns) {
@@ -273,7 +273,7 @@ class ext_update {
 	 *
 	 * @return string output of the update function, will not be empty
 	 */
-	private function updatePhoneNumbers() {
+	protected function updatePhoneNumbers() {
 		$databaseConnection = Tx_Oelib_Db::getDatabaseConnection();
 
 		$result = '<h2>Updating the phone numbers</h2>' . LF;

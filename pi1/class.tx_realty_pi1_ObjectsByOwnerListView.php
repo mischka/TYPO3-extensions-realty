@@ -78,7 +78,7 @@ class tx_realty_pi1_ObjectsByOwnerListView extends tx_realty_pi1_AbstractListVie
 	 *                owner's label or the string for 'label_sorry' if
 	 *                there is no owner at all
 	 */
-	private function getTitleForTheObjectsByOwnerList() {
+	protected function getTitleForTheObjectsByOwnerList() {
 		$result = $this->translate('label_sorry');
 
 		if ($this->existsOwner()) {
@@ -100,7 +100,7 @@ class tx_realty_pi1_ObjectsByOwnerListView extends tx_realty_pi1_AbstractListVie
 	 *
 	 * @see existsOwner
 	 */
-	private function getOwnerLabel() {
+	protected function getOwnerLabel() {
 		$owner = $this->getOwner();
 
 		return ($owner->hasCompany() ? $owner->getCompany() : $owner->getName());
@@ -127,7 +127,7 @@ class tx_realty_pi1_ObjectsByOwnerListView extends tx_realty_pi1_AbstractListVie
 	 *
 	 * @return tx_realty_Model_FrontEndUser the selected owner
 	 */
-	private function getOwner() {
+	protected function getOwner() {
 		$ownerUid = (int)$this->piVars['owner'];
 		if ($ownerUid <= 0) {
 			throw new Tx_Oelib_Exception_NotFound('No owner is selected.', 1333036590);

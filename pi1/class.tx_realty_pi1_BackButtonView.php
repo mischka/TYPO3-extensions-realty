@@ -50,7 +50,7 @@ class tx_realty_pi1_BackButtonView extends tx_realty_pi1_FrontEndView {
 	 * @return string the URL to the listView, will be empty if listUid is not
 	 *                set or zero in piVars
 	 */
-	private function getBackLinkUrl() {
+	protected function getBackLinkUrl() {
 		if ((int)$this->piVars['listUid'] === 0) {
 			return '';
 		}
@@ -89,7 +89,7 @@ class tx_realty_pi1_BackButtonView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return bool TRUE if the buttons should be displayed, FALSE otherwise
 	 */
-	private function nextPreviousButtonsAreEnabled() {
+	protected function nextPreviousButtonsAreEnabled() {
 		if (!isset($this->piVars['listUid'])) {
 			return FALSE;
 		}

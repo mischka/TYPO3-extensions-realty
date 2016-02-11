@@ -24,12 +24,12 @@ class tx_realty_mapMarker {
 	/**
 	 * @var string this marker's latitude
 	 */
-	private $latitude = '';
+	protected $latitude = '';
 
 	/**
 	 * @var string this marker's longitude
 	 */
-	private $longitude = '';
+	protected $longitude = '';
 
 	/**
 	 * @var bool
@@ -39,12 +39,12 @@ class tx_realty_mapMarker {
 	/**
 	 * @var string this marker's title, quote- and tag-safe
 	 */
-	private $title = '';
+	protected $title = '';
 
 	/**
 	 * @var string this marker's info window HTML
 	 */
-	private $infoWindowHtml = '';
+	protected $infoWindowHtml = '';
 
 	/**
 	 * Renders the JavaScript for creating this marker and adding it to an
@@ -136,7 +136,7 @@ class tx_realty_mapMarker {
 	 *
 	 * @return bool TRUE if this marker has coordinates, FALSE otherwise
 	 */
-	private function hasCoordinates() {
+	protected function hasCoordinates() {
 		return $this->coordinatesHaveBeenSet;
 	}
 }

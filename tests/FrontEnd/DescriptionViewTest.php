@@ -25,12 +25,12 @@ class tx_realty_FrontEnd_DescriptionViewTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1_DescriptionView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');

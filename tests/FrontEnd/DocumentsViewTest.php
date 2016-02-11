@@ -25,17 +25,17 @@ class tx_realty_FrontEnd_DocumentsViewTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1_DocumentsView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var tx_realty_Mapper_RealtyObject
 	 */
-	private $realtyObjectMapper = NULL;
+	protected $realtyObjectMapper = NULL;
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');

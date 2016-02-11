@@ -57,7 +57,7 @@ class tx_realty_frontEndForm extends tx_realty_pi1_FrontEndView {
 	/**
 	 * @var string the path to the FORMidable XML file
 	 */
-	private $xmlPath;
+	protected $xmlPath;
 
 	/**
 	 * The constructor.
@@ -217,7 +217,7 @@ class tx_realty_frontEndForm extends tx_realty_pi1_FrontEndView {
 	 * @return bool TRUE if the realty object is available for editing,
 	 *                 FALSE otherwise
 	 */
-	private function realtyObjectExistsInDatabase() {
+	protected function realtyObjectExistsInDatabase() {
 		if ($this->realtyObjectUid == 0) {
 			return TRUE;
 		}

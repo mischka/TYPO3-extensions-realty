@@ -25,7 +25,7 @@ class tx_realty_Service_ListViewFactoryTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var ContentObjectRenderer|PHPUnit_Framework_MockObject_MockObject
 	 */
-	private $cObjMock;
+	protected $cObjMock;
 
 	protected function setUp() {
 		$this->cObjMock = $this->getMock(ContentObjectRenderer::class);

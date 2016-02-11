@@ -27,36 +27,36 @@ class tx_realty_FrontEnd_ImageThumbnailsViewTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1_ImageThumbnailsView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * TS Setup configuration for plugin.tx_realty_pi1
 	 *
 	 * @var Tx_Oelib_Configuration
 	 */
-	private $configuration = NULL;
+	protected $configuration = NULL;
 
 	/**
 	 * TS Setup configuration for plugin.tx_realty_pi1.images
 	 *
 	 * @var Tx_Oelib_Configuration
 	 */
-	private $imagesConfiguration = NULL;
+	protected $imagesConfiguration = NULL;
 
 	/**
 	 * @var ContentObjectRenderer|PHPUnit_Framework_MockObject_MockObject
 	 */
-	private $contentObject = NULL;
+	protected $contentObject = NULL;
 
 	/**
 	 * @var tx_realty_Mapper_RealtyObject
 	 */
-	private $realtyObjectMapper = NULL;
+	protected $realtyObjectMapper = NULL;
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');
@@ -106,7 +106,7 @@ class tx_realty_FrontEnd_ImageThumbnailsViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return TypoScriptFrontendController
 	 */
-	private function getFrontEndController() {
+	protected function getFrontEndController() {
 		return $GLOBALS['TSFE'];
 	}
 

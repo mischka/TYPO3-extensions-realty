@@ -25,12 +25,12 @@ class tx_realty_Model_FrontEndUser extends Tx_Oelib_Model_FrontEndUser {
 	/**
 	 * @var int the number of objects belonging to the current user
 	 */
-	private $numberOfObjects = 0;
+	protected $numberOfObjects = 0;
 
 	/**
 	 * @var bool whether the number of objects has already been calculated
 	 */
-	private $numberOfObjectsHasBeenCalculated = FALSE;
+	protected $numberOfObjectsHasBeenCalculated = FALSE;
 
 	/**
 	 * Returns the maximum number of objects the user is allowed to enter.

@@ -24,7 +24,7 @@ class tx_realty_Model_DocumentTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_Model_Document
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	protected function setUp() {
 		$this->fixture = new tx_realty_Model_Document();

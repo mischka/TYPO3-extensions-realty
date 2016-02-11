@@ -25,7 +25,7 @@ class tx_realty_pi1_ImageThumbnailsView extends tx_realty_pi1_FrontEndView {
 	/**
 	 * @var int UID of the realty object to show
 	 */
-	private $showUid = 0;
+	protected $showUid = 0;
 
 	/**
 	 * size and lightbox configuration for the images using the image position
@@ -33,7 +33,7 @@ class tx_realty_pi1_ImageThumbnailsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @var array[]
 	 */
-	private $imageConfiguration = array();
+	protected $imageConfiguration = array();
 
 	/**
 	 * the number of image subparts in the default HTML template which will be
@@ -66,7 +66,7 @@ class tx_realty_pi1_ImageThumbnailsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return int the total number of rendered images, will be >= 0
 	 */
-	private function renderImages() {
+	protected function renderImages() {
 		tx_realty_lightboxIncluder::includeLightboxFiles($this->prefixId, $this->extKey);
 
 		/** @var tx_realty_Mapper_RealtyObject $realtyObjectMapper */
@@ -108,7 +108,7 @@ class tx_realty_pi1_ImageThumbnailsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function renderImagesInPosition($position, array $images) {
+	protected function renderImagesInPosition($position, array $images) {
 		$containerSubpartName = ($position > 0) ? 'IMAGES_POSITION_' . $position : 'ONE_IMAGE_CONTAINER';
 		if (empty($images)) {
 			$this->hideSubparts($containerSubpartName);
@@ -201,7 +201,7 @@ class tx_realty_pi1_ImageThumbnailsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return int UID of the realty record to show
 	 */
-	private function getUid() {
+	protected function getUid() {
 		return $this->showUid;
 	}
 
@@ -211,7 +211,7 @@ class tx_realty_pi1_ImageThumbnailsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function createImageConfiguration() {
+	protected function createImageConfiguration() {
 		$configuration = Tx_Oelib_ConfigurationRegistry::get('plugin.tx_realty_pi1');
 
 		$highestPositionIndex = $this->findHighestConfiguredPositionIndex();
@@ -262,7 +262,7 @@ class tx_realty_pi1_ImageThumbnailsView extends tx_realty_pi1_FrontEndView {
 	 *         "lightboxImageHeightMax"
 	 *
 	 */
-	private function getImageConfigurationForContainer($containerIndex) {
+	protected function getImageConfigurationForContainer($containerIndex) {
 		return $this->imageConfiguration[$containerIndex];
 	}
 
@@ -271,7 +271,7 @@ class tx_realty_pi1_ImageThumbnailsView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return int the highest container index in use, will be >= 0
 	 */
-	private function findHighestConfiguredPositionIndex() {
+	protected function findHighestConfiguredPositionIndex() {
 		$highestIndex = 0;
 
 		$imageConfigurations = Tx_Oelib_ConfigurationRegistry::get('plugin.tx_realty_pi1')->getAsMultidimensionalArray('images.');

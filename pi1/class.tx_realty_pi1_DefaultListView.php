@@ -41,7 +41,7 @@ class tx_realty_pi1_DefaultListView extends tx_realty_pi1_AbstractListView {
 	/**
 	 * @var string[] the names of the database tables for foreign keys
 	 */
-	private $tableNames = array(
+	protected $tableNames = array(
 		'objects' => 'tx_realty_objects',
 		'city' => 'tx_realty_cities',
 		'district' => 'tx_realty_districts',
@@ -76,7 +76,7 @@ class tx_realty_pi1_DefaultListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return string HTML for the search bar, may be empty
 	 */
-	private function createCheckboxesFilter() {
+	protected function createCheckboxesFilter() {
 		if (!$this->mayCheckboxesFilterBeCreated()) {
 			return '';
 		}
@@ -101,7 +101,7 @@ class tx_realty_pi1_DefaultListView extends tx_realty_pi1_AbstractListView {
 	 *                 criterion is not "city" while the city selector is
 	 *                 active, FALSE otherwise
 	 */
-	private function mayCheckboxesFilterBeCreated() {
+	protected function mayCheckboxesFilterBeCreated() {
 		if (!$this->hasConfValueString('checkboxesFilter')) {
 			return FALSE;
 		}
@@ -118,7 +118,7 @@ class tx_realty_pi1_DefaultListView extends tx_realty_pi1_AbstractListView {
 	 *               empty if there are no entries found for the
 	 *               configured filter
 	 */
-	private function getCheckboxItems() {
+	protected function getCheckboxItems() {
 		$result = array();
 
 		$filterCriterion = $this->getConfValueString('checkboxesFilter');
@@ -160,7 +160,7 @@ class tx_realty_pi1_DefaultListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return bool whether the city selector is currently used
 	 */
-	private function isCitySelectorInUse() {
+	protected function isCitySelectorInUse() {
 		return $this->piVars['city'] > 0;
 	}
 }

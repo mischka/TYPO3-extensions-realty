@@ -67,7 +67,7 @@ class tx_realty_pi1_MyObjectsListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return void
 	 */
-	private function setLimitHeading() {
+	protected function setLimitHeading() {
 		/** @var tx_realty_Model_FrontEndUser $user */
 		$user = Tx_Oelib_FrontEndLoginManager::getInstance()->getLoggedInUser('tx_realty_Mapper_FrontEndUser');
 		if ($user->getTotalNumberOfAllowedObjects() == 0) {
@@ -108,7 +108,7 @@ class tx_realty_pi1_MyObjectsListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return void
 	 */
-	private function setEditorLinkMarker() {
+	protected function setEditorLinkMarker() {
 		/** @var tx_realty_Model_FrontEndUser $user */
 		$user = Tx_Oelib_FrontEndLoginManager::getInstance()->getLoggedInUser('tx_realty_Mapper_FrontEndUser');
 		if ($user->canAddNewObjects()) {
@@ -123,7 +123,7 @@ class tx_realty_pi1_MyObjectsListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return void
 	 */
-	private function processDeletion() {
+	protected function processDeletion() {
 		// no need for a front-end editor if there is nothing to delete
 		if ($this->piVars['delete'] == 0) {
 			return;
@@ -221,7 +221,7 @@ class tx_realty_pi1_MyObjectsListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return string the link to the FE editor page, will not be empty
 	 */
-	private function createLinkToFeEditorPage($pidKey, $uid) {
+	protected function createLinkToFeEditorPage($pidKey, $uid) {
 		return GeneralUtility::locationHeaderUrl(
 			$this->cObj->typoLink_URL(
 				array(
@@ -240,7 +240,7 @@ class tx_realty_pi1_MyObjectsListView extends tx_realty_pi1_AbstractListView {
 	 *
 	 * @return void
 	 */
-	private function setAdvertisementMarkers() {
+	protected function setAdvertisementMarkers() {
 		if (!$this->hasConfValueInteger(
 			'advertisementPID', 's_advertisements'
 		)) {
@@ -294,7 +294,7 @@ class tx_realty_pi1_MyObjectsListView extends tx_realty_pi1_AbstractListView {
 	 * @return bool TRUE if the current object is advertised and the
 	 *                 advertisement has not expired yet, FALSE otherwise
 	 */
-	private function isCurrentObjectAdvertised() {
+	protected function isCurrentObjectAdvertised() {
 		$advertisementDate = $this->internal['currentRow']['advertised_date'];
 		if ($advertisementDate == 0) {
 			return FALSE;

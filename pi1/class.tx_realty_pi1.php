@@ -48,7 +48,7 @@ class tx_realty_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_Interfac
 	/**
 	 * @var bool whether this class is called in the test mode
 	 */
-	private $isTestMode = FALSE;
+	protected $isTestMode = FALSE;
 
 	/**
 	 * The constructor.
@@ -113,7 +113,7 @@ class tx_realty_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_Interfac
 	 *
 	 * @return string HTML for the current view, will not be empty
 	 */
-	private function getHtmlForCurrentView() {
+	protected function getHtmlForCurrentView() {
 		$listViewType = '';
 		$result = '';
 
@@ -196,7 +196,7 @@ class tx_realty_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_Interfac
 	 * @return string HTML for the error view, will be empty if a user has
 	 *                access
 	 */
-	private function checkAccessAndGetHtmlOfErrorView() {
+	protected function checkAccessAndGetHtmlOfErrorView() {
 		// This will be moved to the access check when Bug #1480 is fixed.
 		if (!$this->getConfValueBoolean('requireLoginForSingleViewPage')
 			&& ($this->getCurrentView() == 'single_view')
@@ -223,7 +223,7 @@ class tx_realty_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_Interfac
 	 *
 	 * @return void
 	 */
-	private function setEmptyResultView() {
+	protected function setEmptyResultView() {
 		$view = $this->getCurrentView();
 		$noResultsMessage = 'message_noResultsFound_' . $view;
 
@@ -246,7 +246,7 @@ class tx_realty_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_Interfac
 	 *                If no view is set, 'realty_list' is returned as this
 	 *                is the fallback case.
 	 */
-	private function getCurrentView() {
+	protected function getCurrentView() {
 		$whatToDisplay = $this->getConfValueString('what_to_display');
 
 		if (in_array($whatToDisplay, array(

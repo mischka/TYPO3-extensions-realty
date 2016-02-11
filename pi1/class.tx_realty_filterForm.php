@@ -30,7 +30,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *            derived from the form data. Fields initialized with 0 refer to
 	 *            integer values and fields initialized with '' to strings.
 	 */
-	private $filterFormData = array(
+	protected $filterFormData = array(
 		'uid' => 0, 'objectNumber' => '', 'site' => '', 'city' => 0,
 		'district' => 0, 'houseType' => 0, 'priceRange' => '', 'rentFrom' => 0,
 		'rentTo' => 0, 'livingAreaFrom' => 0, 'livingAreaTo' => 0,
@@ -40,7 +40,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	/**
 	 * @var string[] the search fields which should be displayed in the search form
 	 */
-	private $displayedSearchFields = array();
+	protected $displayedSearchFields = array();
 
 	/**
 	 * Returns the filter form in HTML.
@@ -83,7 +83,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function includeJavaScript() {
+	protected function includeJavaScript() {
 		if ($this->hasSearchField('city') && $this->hasSearchField('district')) {
 			tx_realty_lightboxIncluder::includePrototype();
 			tx_realty_lightboxIncluder::includeMainJavaScript();
@@ -125,7 +125,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function extractValidFilterFormData(array $formData) {
+	protected function extractValidFilterFormData(array $formData) {
 		foreach ($formData as $key => $rawValue) {
 			switch($key) {
 				case 'uid':
@@ -181,7 +181,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *               "upperLimit" and "lowerLimit", will be empty if no price
 	 *               range was provided in the form data
 	 */
-	private function getFormattedPriceRange($priceRange) {
+	protected function getFormattedPriceRange($priceRange) {
 		if ($priceRange == '') {
 			return array();
 		}
@@ -203,7 +203,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *               "upperLimit" and "lowerLimit", will be empty if no price
 	 *               range or rent data was set
 	 */
-	private function getPriceRange() {
+	protected function getPriceRange() {
 		$rentData = $this->processRentFilterFormData();
 		$priceRange = ($rentData != '')
 			? $rentData
@@ -219,7 +219,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 * @return string the rent values formatted as priceRange, will be empty if
 	 *                rentTo and rentFrom are empty
 	 */
-	private function processRentFilterFormData() {
+	protected function processRentFilterFormData() {
 		$rentFrom = ((int)$this->filterFormData['rentFrom'] === 0) ? '' : (int)$this->filterFormData['rentFrom'];
 		$rentTo = ((int)$this->filterFormData['rentTo'] === 0) ? '' : (int)$this->filterFormData['rentTo'];
 
@@ -231,7 +231,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function setTargetUrlMarker() {
+	protected function setTargetUrlMarker() {
 		$this->setMarker(
 			'target_url',
 			htmlspecialchars(GeneralUtility::locationHeaderUrl($this->cObj->typoLink_URL(array(
@@ -254,7 +254,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideSiteSearch() {
+	protected function fillOrHideSiteSearch() {
 		if ($this->hasSearchField('site')) {
 			$this->setMarker(
 				'site', htmlspecialchars($this->filterFormData['site'])
@@ -270,7 +270,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHidePriceRangeDropDown() {
+	protected function fillOrHidePriceRangeDropDown() {
 		if (!$this->hasSearchField('priceRanges')) {
 			$this->hideSubparts('wrapper_price_range_options');
 			return;
@@ -305,7 +305,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideUidSearch() {
+	protected function fillOrHideUidSearch() {
 		if (!$this->hasSearchField('uid')) {
 			$this->hideSubparts('wrapper_uid_search');
 			return;
@@ -324,7 +324,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideObjectNumberSearch() {
+	protected function fillOrHideObjectNumberSearch() {
 		if (!$this->hasSearchField('objectNumber')) {
 			$this->hideSubparts('wrapper_object_number_search');
 			return;
@@ -341,7 +341,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideCitySearch() {
+	protected function fillOrHideCitySearch() {
 		$onChange = $this->hasSearchField('district')
 			? ' onchange="updateDistrictsInSearchWidget();"'
 			: $this->getOnChangeForSingleField();
@@ -354,7 +354,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideDistrictSearch() {
+	protected function fillOrHideDistrictSearch() {
 		$this->createAndSetDropDown(
 			'district', $this->getOnChangeForSingleField()
 		);
@@ -383,7 +383,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function createAndSetDropDown($type, $onChange = '') {
+	protected function createAndSetDropDown($type, $onChange = '') {
 		if (!$this->hasSearchField($type)) {
 			$this->hideSubparts('wrapper_' . $type . '_search');
 			return;
@@ -444,7 +444,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideHouseTypeSearch() {
+	protected function fillOrHideHouseTypeSearch() {
 		$this->fillOrHideAuxiliaryRecordSearch('houseType', 'tx_realty_house_types', 'house_type');
 	}
 
@@ -465,7 +465,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideAuxiliaryRecordSearch(
+	protected function fillOrHideAuxiliaryRecordSearch(
 		$searchKey, $tableName, $columnName
 	) {
 		if (!$this->hasSearchField($searchKey)) {
@@ -502,7 +502,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideObjectTypeSelect() {
+	protected function fillOrHideObjectTypeSelect() {
 		if (!$this->hasSearchField('objectType')) {
 			$this->hideSubparts('wrapper_object_type_selector');
 			return;
@@ -527,7 +527,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillOrHideFromToSearchField($searchField, $fieldMarkerPart) {
+	protected function fillOrHideFromToSearchField($searchField, $fieldMarkerPart) {
 		if (!$this->hasSearchField($searchField)) {
 			$this->hideSubparts('wrapper_' . $fieldMarkerPart . '_search');
 			return;
@@ -553,7 +553,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *               selectbox remains empty. If no price ranges are configured,
 	 *               this array will be empty.
 	 */
-	private function getPriceRangesFromConfiguration() {
+	protected function getPriceRangesFromConfiguration() {
 		if (!$this->hasConfValueString(
 			'priceRangesForFilterForm', 's_searchForm')
 		) {
@@ -589,7 +589,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *                if an empty array was provided (an empty string
 	 *                would break the XHTML output's validity)
 	 */
-	private function getPriceRangeLabel(array $range) {
+	protected function getPriceRangeLabel(array $range) {
 		if (empty($range)) {
 			return '&nbsp;';
 		}
@@ -629,7 +629,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *                      will be build from "priceRange" field, if all three
 	 *                      fields are empty an empty string will be returned
 	 */
-	private function getRentOrPriceRangeWhereClausePart() {
+	protected function getRentOrPriceRangeWhereClausePart() {
 		$priceRange = $this->getPriceRange();
 		if (empty($priceRange)) {
 			return '';
@@ -681,7 +681,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 * @return string WHERE clause part beginning with " AND", will be empty if
 	 *                no filter form data was provided for the site
 	 */
-	private function getSiteWhereClausePart() {
+	protected function getSiteWhereClausePart() {
 		if ($this->filterFormData['site'] == '') {
 			return '';
 		}
@@ -715,7 +715,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 * @return string WHERE clause part beginning with " AND", will be empty if
 	 *                no filter form data was provided for the object number
 	 */
-	private function getObjectNumberWhereClausePart() {
+	protected function getObjectNumberWhereClausePart() {
 		if ($this->filterFormData['objectNumber'] == '') {
 			return '';
 		}
@@ -730,7 +730,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 * @return string WHERE clause part beginning with " AND", will be empty if
 	 *                no filter form data was provided for the UID
 	 */
-	private function getUidWhereClausePart() {
+	protected function getUidWhereClausePart() {
 		if ($this->filterFormData['uid'] == 0) {
 			return '';
 		}
@@ -746,7 +746,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *                no filter form data was provided for the objectType
 	 *                selector
 	 */
-	private function getObjectTypeWhereClausePart() {
+	protected function getObjectTypeWhereClausePart() {
 		if ($this->filterFormData['objectType'] == '') {
 			return '';
 		}
@@ -765,7 +765,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *                no filter form data was provided for the city
 	 *                selector
 	 */
-	private function getCityWhereClausePart() {
+	protected function getCityWhereClausePart() {
 		if ($this->filterFormData['city'] == 0) {
 			return '';
 		}
@@ -781,7 +781,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *                no filter form data was provided for the city
 	 *                selector
 	 */
-	private function getDistrictWhereClausePart() {
+	protected function getDistrictWhereClausePart() {
 		if ($this->filterFormData['district'] == 0) {
 			return '';
 		}
@@ -797,7 +797,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *                no filter form data was provided for the house type
 	 *                selector
 	 */
-	private function getHouseTypeWhereClausePart() {
+	protected function getHouseTypeWhereClausePart() {
 		if ($this->filterFormData['houseType'] == 0) {
 			return '';
 		}
@@ -813,7 +813,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *                no filter form data was provided for the living area
 	 *                search fields
 	 */
-	private function getLivingAreaWhereClausePart() {
+	protected function getLivingAreaWhereClausePart() {
 		return (($this->filterFormData['livingAreaFrom'] != 0)
 				? ' AND (' . 'tx_realty_objects' . '.living_area >= '
 					. $this->filterFormData['livingAreaFrom'] . ')'
@@ -832,7 +832,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 * @return bool TRUE if the given field should be displayed as set per
 	 *                 configuration, FALSE otherwise
 	 */
-	private function hasSearchField($fieldToCheck) {
+	protected function hasSearchField($fieldToCheck) {
 		return in_array($fieldToCheck, $this->displayedSearchFields);
 	}
 
@@ -842,7 +842,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 * @return string attribute which sends the search widget on change event
 	 *                handler, will be empty if more than one field is shown
 	 */
-	private function getOnChangeForSingleField() {
+	protected function getOnChangeForSingleField() {
 		if (count($this->displayedSearchFields) == 1) {
 			$result = ' onchange="document.' .
 				'forms[\'tx_realty_pi1_searchWidget\'].submit();"';
@@ -860,7 +860,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 *                no filter form data was provided for the number of rooms
 	 *                search fields
 	 */
-	private function getNumberOfRoomsWhereClausePart() {
+	protected function getNumberOfRoomsWhereClausePart() {
 		$result = '';
 
 		$roomsFromWithDots = $this->replaceCommasWithDots(
@@ -890,7 +890,7 @@ class tx_realty_filterForm extends tx_realty_pi1_FrontEndView {
 	 * @return string the string, with every comma replaced by a dot, will be
 	 *                empty if the input string was empty.
 	 */
-	private function replaceCommasWithDots($rawValue) {
+	protected function replaceCommasWithDots($rawValue) {
 		return str_replace(',', '.', $rawValue);
 	}
 

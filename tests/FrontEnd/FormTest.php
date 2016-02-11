@@ -25,20 +25,20 @@ class tx_realty_FrontEnd_FormTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_frontEndForm object to be tested
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int dummy FE user UID
 	 */
-	private $feUserUid;
+	protected $feUserUid;
 	/**
 	 * @var int UID of the dummy object
 	 */
-	private $dummyObjectUid = 0;
+	protected $dummyObjectUid = 0;
 
 	protected function setUp() {
 		Tx_Oelib_HeaderProxyFactory::getInstance()->enableTestMode();
@@ -83,7 +83,7 @@ class tx_realty_FrontEnd_FormTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyRecords() {
+	protected function createDummyRecords() {
 		$this->feUserUid = $this->testingFramework->createFrontEndUser();
 		$this->dummyObjectUid = $this->testingFramework->createRecord(
 			'tx_realty_objects'

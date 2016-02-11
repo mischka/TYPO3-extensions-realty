@@ -49,7 +49,7 @@ class tx_realty_pi1_OffererView extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return string the contact data as HTML, will be empty if none was found
 	 */
-	private function fetchContactDataFromSource($uid) {
+	protected function fetchContactDataFromSource($uid) {
 		/** @var tx_realty_offererList $offererList */
 		$offererList = GeneralUtility::makeInstance('tx_realty_offererList', $this->conf, $this->cObj);
 		/** @var tx_realty_Mapper_RealtyObject $mapper */

@@ -105,7 +105,7 @@ class tx_realty_lightboxIncluder {
 	 *
 	 * @return void
 	 */
-	static private function addLightboxConfigurationToHeader() {
+	static protected function addLightboxConfigurationToHeader() {
 		/** @var tx_realty_translator $translator */
 		$translator = GeneralUtility::makeInstance('tx_realty_translator');
 

@@ -26,43 +26,43 @@ class tx_realty_Model_RealtyObjectTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_Model_RealtyObjectChild
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var Tx_Oelib_Templatehelper
 	 */
-	private $templateHelper;
+	protected $templateHelper;
 
 	/**
 	 * @var int UID of a dummy realty object
 	 */
-	private $objectUid = 0;
+	protected $objectUid = 0;
 	/**
 	 * @var int page UID of a dummy FE page
 	 */
-	private $pageUid = 0;
+	protected $pageUid = 0;
 	/**
 	 * @var int page UID of another dummy FE page
 	 */
-	private $otherPageUid = 0;
+	protected $otherPageUid = 0;
 	/**
 	 * @var string object number of a dummy realty object
 	 */
-	private static $objectNumber = '100000';
+	protected static $objectNumber = '100000';
 	/**
 	 * @var string object number of a dummy realty object
 	 */
-	private static $otherObjectNumber = '100001';
+	protected static $otherObjectNumber = '100001';
 
 	/**
 	 * @var array
 	 */
-	private $configurationVariablesBackup = array();
+	protected $configurationVariablesBackup = array();
 
 	/**
 	 * @var int static_info_tables UID of Germany
@@ -106,7 +106,7 @@ class tx_realty_Model_RealtyObjectTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyRecords() {
+	protected function createDummyRecords() {
 		$this->pageUid = $this->testingFramework->createSystemFolder();
 		$this->otherPageUid = $this->testingFramework->createSystemFolder();
 		$this->objectUid = $this->testingFramework->createRecord(
@@ -126,7 +126,7 @@ class tx_realty_Model_RealtyObjectTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function cleanUpDatabase() {
+	protected function cleanUpDatabase() {
 		// Inserting images causes an entry to 'sys_refindex' which is currently
 		// not cleaned up automatically by the testing framework.
 		if (in_array(
@@ -153,7 +153,7 @@ class tx_realty_Model_RealtyObjectTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function loadRealtyObjectAndSetOwner(
+	protected function loadRealtyObjectAndSetOwner(
 		$ownerSource,
 		array $userData = array() ,
 		array $additionalObjectData = array()

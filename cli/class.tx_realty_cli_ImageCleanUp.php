@@ -26,19 +26,19 @@ class tx_realty_cli_ImageCleanUp {
 	/**
 	 * @var string additional WHERE clause, used for testing
 	 */
-	private $additionalWhereClause = '';
+	protected $additionalWhereClause = '';
 
 	/**
 	 * @var string upload folder, relative to PATH_site
 	 */
-	private $uploadFolder = tx_realty_Model_Image::UPLOAD_FOLDER;
+	protected $uploadFolder = tx_realty_Model_Image::UPLOAD_FOLDER;
 
 	/**
 	 * associative array with statistical information collected during clean-up
 	 *
 	 * @var string[]
 	 */
-	private $statistics = array();
+	protected $statistics = array();
 
 	/**
 	 * Checks whether the Realty upload folder exists and is writable.
@@ -154,7 +154,7 @@ class tx_realty_cli_ImageCleanUp {
 	 *         comma-separated list of UIDs, will be empty if there are no
 	 *         matching records
 	 */
-	private function retrieveRealtyObjectUids() {
+	protected function retrieveRealtyObjectUids() {
 		$uids = Tx_Oelib_Db::selectColumnForMultiple(
 			'uid', 'tx_realty_objects',
 			'1=1' . Tx_Oelib_Db::enableFields('tx_realty_objects', 1) .
@@ -238,7 +238,7 @@ class tx_realty_cli_ImageCleanUp {
 	 *
 	 * @return void
 	 */
-	private function addToStatistics($title, $value) {
+	protected function addToStatistics($title, $value) {
 		$this->statistics[] = $title . ': ' . $value;
 	}
 

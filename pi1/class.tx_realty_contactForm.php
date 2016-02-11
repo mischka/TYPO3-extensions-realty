@@ -27,7 +27,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	/**
 	 * @var array data for the contact form
 	 */
-	private $contactFormData = array(
+	protected $contactFormData = array(
 		'isSubmitted' => FALSE,
 		'showUid' => 0,
 		'requesterName' => '',
@@ -103,7 +103,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function hideNonVisibleFormFields() {
+	protected function hideNonVisibleFormFields() {
 		$visibleFields = $this->getVisibleFields();
 		if (in_array('law', $visibleFields)) {
 			$visibleFields[] = 'law_asterisk';
@@ -127,7 +127,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return string[] the names of the visible fields, will be empty if no optional fields are visible
 	 */
-	private function getVisibleFields() {
+	protected function getVisibleFields() {
 		return $this->getConfigurationArray('visibleContactFormFields');
 	}
 
@@ -140,7 +140,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return bool TRUE if the form data was correctly filled, FALSE otherwise
 	 */
-	private function checkFormData(array &$errorMessages) {
+	protected function checkFormData(array &$errorMessages) {
 		$noErrorsSet = TRUE;
 
 		if (!Tx_Oelib_FrontEndLoginManager::getInstance()->isLoggedIn()) {
@@ -176,7 +176,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 * @return string[] keys of form fields that are empty but must not be empty,
 	 *               will be empty if all required fields have been filled in
 	 */
-	private function getEmptyRequiredFields() {
+	protected function getEmptyRequiredFields() {
 		$result = array();
 		$requiredFields = $this->getConfigurationArray('requiredContactFormFields');
 
@@ -218,7 +218,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @see https://bugs.oliverklee.com/show_bug.cgi?id=961
 	 */
-	private function sendRequest() {
+	protected function sendRequest() {
 		$contactData = $this->getContactData();
 		if (($contactData['email'] == '') || !$this->setOrHideSpecializedView()) {
 			return FALSE;
@@ -251,7 +251,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 * @return string the body of the e-mail to send, contains the request and
 	 *                the contact data of the requester, will not be empty
 	 */
-	private function getFilledEmailBody($contactPerson) {
+	protected function getFilledEmailBody($contactPerson) {
 		foreach (array(
 			'request' => $this->contactFormData['request'],
 			'requester_name' => $this->contactFormData['requesterName'],
@@ -278,7 +278,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 * @return string the checkboxes texts separated by LF, will be empty if no
 	 *                checkboxes have been checked
 	 */
-	private function getCheckboxesForEMail() {
+	protected function getCheckboxesForEMail() {
 		$result = array();
 
 		foreach (array('viewing', 'information', 'callback') as $key) {
@@ -303,7 +303,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return string the e-mail's subject, will not be empy
 	 */
-	private function getEmailSubject() {
+	protected function getEmailSubject() {
 		if ($this->isSpecializedView()) {
 			$result = $this->translate('label_email_subject_specialized') .
 				' ' . $this->getRealtyObject()->getProperty('object_number');
@@ -320,7 +320,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function setDataForLoggedInUser() {
+	protected function setDataForLoggedInUser() {
 		if (!Tx_Oelib_FrontEndLoginManager::getInstance()->isLoggedIn()) {
 			return;
 		}
@@ -357,7 +357,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return string[] configuration of $key, empty if no configuration was found
 	 */
-	private function getConfigurationArray($key) {
+	protected function getConfigurationArray($key) {
 		return GeneralUtility::trimExplode(',', $this->getConfValueString($key, 's_contactForm'), TRUE);
 	}
 
@@ -379,7 +379,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *               e-mail address if no valid address was found, empty
 	 *               if the expected contact data was not found
 	 */
-	private function getContactData() {
+	protected function getContactData() {
 		$result = array('name' => '', 'email' => '');
 		$contactData = $this->fetchContactDataFromSource();
 
@@ -398,7 +398,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return string[] contact data array, will always contain the two elements 'email' and 'name'
 	 */
-	private function fetchContactDataFromSource() {
+	protected function fetchContactDataFromSource() {
 		if (!$this->isSpecializedView()) {
 			return array('email' => '', 'name' => '');
 		}
@@ -423,7 +423,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *                 be set but no object data could be fetched, TRUE
 	 *                 otherwise
 	 */
-	private function setOrHideSpecializedView() {
+	protected function setOrHideSpecializedView() {
 		$wasSuccessful = TRUE;
 
 		if ($this->isSpecializedView()) {
@@ -456,7 +456,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function fillContactInformationFieldsForLoggedInUser() {
+	protected function fillContactInformationFieldsForLoggedInUser() {
 		$readonlyMarkerContent = '';
 		if (Tx_Oelib_FrontEndLoginManager::getInstance()->isLoggedIn()) {
 			$readonlyMarkerContent = 'disabled="disabled"';
@@ -477,7 +477,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function setErrorMessageContent(array $errors) {
+	protected function setErrorMessageContent(array $errors) {
 		foreach ($errors as $formFieldName => $locallangKey) {
 			if ($locallangKey != '') {
 				$this->setMarker('ERROR_MESSAGE', $this->translate($locallangKey) . '<br/>');
@@ -495,7 +495,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return bool TRUE if the view should be specialized, FALSE otherwise
 	 */
-	private function isSpecializedView() {
+	protected function isSpecializedView() {
 		return ($this->getShowUid() > 0);
 	}
 
@@ -506,7 +506,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return bool TRUE if the e-mail address is valid, FALSE otherwise
 	 */
-	private function isValidEmail($emailAddress) {
+	protected function isValidEmail($emailAddress) {
 		return (($emailAddress != '') && GeneralUtility::validEmail($emailAddress));
 	}
 
@@ -519,7 +519,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *                 any characters that are indicative of header injection,
 	 *                 FALSE otherwise
 	 */
-	private function isValidName($name) {
+	protected function isValidName($name) {
 		if ($name == '') {
 			return TRUE;
 		}
@@ -536,7 +536,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function createTermsLink() {
+	protected function createTermsLink() {
 		if (!in_array('terms', $this->getConfigurationArray('visibleContactFormFields'), true)) {
 			return;
 		}
@@ -557,7 +557,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function setFormValues() {
+	protected function setFormValues() {
 		foreach (array(
 			'request' => $this->contactFormData['request'],
 			'requester_name' => $this->contactFormData['requesterName'],
@@ -589,7 +589,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return void
 	 */
-	private function storeContactFormData(array $contactFormData) {
+	protected function storeContactFormData(array $contactFormData) {
 		foreach (
 			array(
 				'requesterName', 'requesterStreet', 'requesterZip',
@@ -614,7 +614,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return int UID of the current realty object, will be >= 0
 	 */
-	private function getShowUid() {
+	protected function getShowUid() {
 		return $this->contactFormData['showUid'];
 	}
 
@@ -624,7 +624,7 @@ class tx_realty_contactForm extends tx_realty_pi1_FrontEndView {
 	 *
 	 * @return tx_realty_Model_RealtyObject realty object for current UID
 	 */
-	private function getRealtyObject() {
+	protected function getRealtyObject() {
 		/** @var tx_realty_Mapper_RealtyObject $mapper */
 		$mapper = Tx_Oelib_MapperRegistry::get('tx_realty_Mapper_RealtyObject');
 		return $mapper->find($this->getShowUid());

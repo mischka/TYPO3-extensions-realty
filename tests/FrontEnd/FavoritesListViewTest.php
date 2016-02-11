@@ -26,47 +26,47 @@ class tx_realty_FrontEnd_FavoritesListViewTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_pi1_FavoritesListView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int
 	 */
-	private $systemFolderPid = 0;
+	protected $systemFolderPid = 0;
 
 	/**
 	 * @var int UID of the first dummy realty object
 	 */
-	private $firstRealtyUid = 0;
+	protected $firstRealtyUid = 0;
 
 	/**
 	 * @var string object number for the first dummy realty object
 	 */
-	private static $firstObjectNumber = '1';
+	protected static $firstObjectNumber = '1';
 
 	/**
 	 * @var string title for the first dummy realty object
 	 */
-	private static $firstObjectTitle = 'a title';
+	protected static $firstObjectTitle = 'a title';
 
 	/**
 	 * @var int a city to relate realty objects to
 	 */
-	private $cityUid = 0;
+	protected $cityUid = 0;
 
 	/**
 	 * @var int PID of the favorites page
 	 */
-	private $favoritesPid = 0;
+	protected $favoritesPid = 0;
 
 	/**
 	 * @var Tx_Oelib_FakeSession a fake session
 	 */
-	private $session;
+	protected $session;
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');
@@ -113,7 +113,7 @@ class tx_realty_FrontEnd_FavoritesListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyPages() {
+	protected function createDummyPages() {
 		$this->favoritesPid = $this->testingFramework->createFrontEndPage();
 		$this->systemFolderPid = $this->testingFramework->createSystemFolder(1);
 	}
@@ -123,7 +123,7 @@ class tx_realty_FrontEnd_FavoritesListViewTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function createDummyObjects() {
+	protected function createDummyObjects() {
 		$this->cityUid = $this->testingFramework->createRecord(
 			'tx_realty_cities',
 			array('title' => 'Foo City')

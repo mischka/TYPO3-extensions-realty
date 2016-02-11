@@ -29,50 +29,50 @@ class tx_realty_Import_OpenImmoImportTest extends Tx_Phpunit_TestCase {
 	/**
 	 * @var tx_realty_openImmoImportChild
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var Tx_Oelib_ConfigurationProxy
 	 */
-	private $globalConfiguration = NULL;
+	protected $globalConfiguration = NULL;
 
 	/**
 	 * @var tx_realty_translator
 	 */
-	private $translator = NULL;
+	protected $translator = NULL;
 
 	/**
 	 * @var int PID of the system folder where imported records will
 	 *              be stored
 	 */
-	private $systemFolderPid = 0;
+	protected $systemFolderPid = 0;
 
 	/**
 	 * @var string path to the import folder
 	 */
-	private $importFolder = '';
+	protected $importFolder = '';
 
 	/**
 	 * @var bool whether an import folder has been created
 	 */
-	private $testImportFolderExists = FALSE;
+	protected $testImportFolderExists = FALSE;
 
 	/**
 	 * backup of $GLOBALS['TYPO3_CONF_VARS']['GFX']
 	 *
 	 * @var array
 	 */
-	private $graphicsConfigurationBackup = array();
+	protected $graphicsConfigurationBackup = array();
 
 	/**
 	 * @var MailMessage
 	 */
-	private $message = NULL;
+	protected $message = NULL;
 
 	protected function setUp() {
 		$this->graphicsConfigurationBackup = $GLOBALS['TYPO3_CONF_VARS']['GFX'];
@@ -116,7 +116,7 @@ class tx_realty_Import_OpenImmoImportTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function setupStaticConditions() {
+	protected function setupStaticConditions() {
 		// avoids using the extension's real upload folder
 		$this->fixture->setUploadDirectory($this->importFolder);
 
@@ -142,7 +142,7 @@ class tx_realty_Import_OpenImmoImportTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function disableValidation() {
+	protected function disableValidation() {
 		$this->globalConfiguration->setAsString('openImmoSchema', '');
 	}
 
@@ -158,7 +158,7 @@ class tx_realty_Import_OpenImmoImportTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function copyTestFileIntoImportFolder($fileName, $newFileName = '') {
+	protected function copyTestFileIntoImportFolder($fileName, $newFileName = '') {
 		// creates an import folder if there is none
 		if (!is_dir($this->importFolder)) {
 			GeneralUtility::mkdir($this->importFolder);
@@ -179,7 +179,7 @@ class tx_realty_Import_OpenImmoImportTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function deleteTestImportFolder() {
+	protected function deleteTestImportFolder() {
 		if ($this->testImportFolderExists) {
 			GeneralUtility::rmdir($this->importFolder, TRUE);
 			$this->testImportFolderExists = FALSE;
@@ -192,7 +192,7 @@ class tx_realty_Import_OpenImmoImportTest extends Tx_Phpunit_TestCase {
 	 *
 	 * @return void
 	 */
-	private function checkForZipArchive() {
+	protected function checkForZipArchive() {
 		if (!in_array('zip', get_loaded_extensions(), TRUE)) {
 			self::markTestSkipped('This PHP installation does not provide the ZIPArchive class.');
 		}

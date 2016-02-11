@@ -25,24 +25,24 @@ class tx_realty_FrontEnd_NextPreviousButtonsViewTest extends Tx_Phpunit_TestCase
 	/**
 	 * @var tx_realty_pi1_NextPreviousButtonsView
 	 */
-	private $fixture = NULL;
+	protected $fixture = NULL;
 
 	/**
 	 * @var Tx_Oelib_TestingFramework
 	 */
-	private $testingFramework = NULL;
+	protected $testingFramework = NULL;
 
 	/**
 	 * @var int the UID of the "list view" content object.
 	 */
-	private $listViewUid = 0;
+	protected $listViewUid = 0;
 
 	/**
 	 * the UID of a dummy city for the object records
 	 *
 	 * @var int
 	 */
-	private $dummyCityUid = 0;
+	protected $dummyCityUid = 0;
 
 	protected function setUp() {
 		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_realty');
@@ -75,7 +75,7 @@ class tx_realty_FrontEnd_NextPreviousButtonsViewTest extends Tx_Phpunit_TestCase
 	 *
 	 * @return int the UID of the created realty object, will be > 0
 	 */
-	private function createRealtyRecordWithCity() {
+	protected function createRealtyRecordWithCity() {
 		return $this->testingFramework->createRecord(
 			'tx_realty_objects', array('city' => $this->dummyCityUid)
 		);
