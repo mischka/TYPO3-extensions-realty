@@ -4,12 +4,12 @@ defined('TYPO3_MODE') or exit();
 $extPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('realty');
 $extRelPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('realty');
 $extIconRelPath = $extRelPath . 'icons/';
-$ll = 'LLL:EXT:realty/locallang_db.xml';
+$ll = 'LLL:EXT:realty/locallang_db.xml:';
 
 $tempColumns = [
     'tx_realty_openimmo_anid' => array(
         'exclude' => 0,
-        'label' => 'LLL:EXT:realty/locallang_db.xml:fe_users.tx_realty_openimmo_anid',
+        'label' => $ll . 'fe_users.tx_realty_openimmo_anid',
         'config' => array(
             'type' => 'input',
             'size' => '31',
@@ -18,7 +18,7 @@ $tempColumns = [
     ),
     'tx_realty_maximum_objects' => array(
         'exclude' => 0,
-        'label' => 'LLL:EXT:realty/locallang_db.xml:fe_users.tx_realty_maximum_objects',
+        'label' => $ll . 'fe_users.tx_realty_maximum_objects',
         'config' => array(
             'type' => 'input',
             'size' => '4',

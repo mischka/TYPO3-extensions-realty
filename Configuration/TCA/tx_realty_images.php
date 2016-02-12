@@ -3,11 +3,11 @@
 $extPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('realty');
 $extRelPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('realty');
 $extIconRelPath = $extRelPath . 'icons/';
-$ll = 'LLL:EXT:realty/locallang_db.xml';
+$ll = 'LLL:EXT:realty/locallang_db.xml:';
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_images',
+        'title' => $ll . 'tx_realty_images',
         'label' => 'caption',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -85,7 +85,7 @@ return [
         ],
         'caption' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_images.caption',
+            'label' => $ll . 'tx_realty_images.caption',
             'config' => [
                 'type' => 'input',
                 'size' => '30',
@@ -94,7 +94,7 @@ return [
         ],
         'image' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_images.image',
+            'label' => $ll . 'tx_realty_images.image',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'file',
@@ -109,7 +109,7 @@ return [
         ],
         'thumbnail' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_images.thumbnail',
+            'label' => $ll . 'tx_realty_images.thumbnail',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'file',
@@ -124,7 +124,7 @@ return [
         ],
         'position' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_images.position',
+            'label' => $ll . 'tx_realty_images.position',
             'config' => [
                 'type' => 'select',
                 'items' => [

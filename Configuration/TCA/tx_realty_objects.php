@@ -3,11 +3,11 @@
 $extPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('realty');
 $extRelPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('realty');
 $extIconRelPath = $extRelPath . 'icons/';
-$ll = 'LLL:EXT:realty/locallang_db.xml';
+$ll = 'LLL:EXT:realty/locallang_db.xml:';
 
 return [
     'ctrl' => array(
-        'title' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects',
+        'title' => $ll . 'tx_realty_objects',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -130,7 +130,7 @@ return [
         ),
         'object_number' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.object_number',
+            'label' => $ll . 'tx_realty_objects.object_number',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -139,7 +139,7 @@ return [
         ),
         'object_type' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.object_type',
+            'label' => $ll . 'tx_realty_objects.object_type',
             'config' => array(
                 'type' => 'radio',
                 'items' => array(
@@ -150,7 +150,7 @@ return [
         ),
         'title' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.title',
+            'label' => $ll . 'tx_realty_objects.title',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -159,14 +159,14 @@ return [
         ),
         'emphasized' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.emphasized',
+            'label' => $ll . 'tx_realty_objects.emphasized',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'sorting' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.sorting',
+            'label' => $ll . 'tx_realty_objects.sorting',
             'config' => array(
                 'type' => 'input',
                 'size' => '4',
@@ -182,14 +182,14 @@ return [
         ),
         'show_address' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.show_address',
+            'label' => $ll . 'tx_realty_objects.show_address',
             'config' => array(
                 'type' => 'check',
             )
         ),
         'street' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.street',
+            'label' => $ll . 'tx_realty_objects.street',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -198,7 +198,7 @@ return [
         ),
         'zip' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.zip',
+            'label' => $ll . 'tx_realty_objects.zip',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -208,7 +208,7 @@ return [
         ),
         'city' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.city',
+            'label' => $ll . 'tx_realty_objects.city',
             'config' => array(
                 'type' => 'select',
                 'foreign_table' => 'tx_realty_cities',
@@ -248,7 +248,7 @@ return [
         'district' => array(
             'displayCond' => 'FIELD:city:>:0',
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.district',
+            'label' => $ll . 'tx_realty_objects.district',
             'config' => array(
                 'type' => 'select',
                 'itemsProcFunc' => 'tx_realty_Tca->getDistrictsForCity',
@@ -286,7 +286,7 @@ return [
         ),
         'country' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.country',
+            'label' => $ll . 'tx_realty_objects.country',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -301,7 +301,7 @@ return [
         ),
         'distance_to_the_sea' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.distance_to_the_sea',
+            'label' => $ll . 'tx_realty_objects.distance_to_the_sea',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -311,21 +311,21 @@ return [
         ),
         'sea_view' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.sea_view',
+            'label' => $ll . 'tx_realty_objects.sea_view',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'has_coordinates' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.has_coordinates',
+            'label' => $ll . 'tx_realty_objects.has_coordinates',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'coordinates_problem' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.coordinates_problem',
+            'label' => $ll . 'tx_realty_objects.coordinates_problem',
             'config' => array(
                 'type' => 'check',
             ),
@@ -333,7 +333,7 @@ return [
         'longitude' => array(
             'displayCond' => 'FIELD:has_coordinates:!=:0',
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.longitude',
+            'label' => $ll . 'tx_realty_objects.longitude',
             'config' => array(
                 'type' => 'input',
                 'size' => '19',
@@ -344,7 +344,7 @@ return [
         'latitude' => array(
             'displayCond' => 'FIELD:has_coordinates:!=:0',
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.latitude',
+            'label' => $ll . 'tx_realty_objects.latitude',
             'config' => array(
                 'type' => 'input',
                 'size' => '19',
@@ -354,7 +354,7 @@ return [
         ),
         'number_of_rooms' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.number_of_rooms',
+            'label' => $ll . 'tx_realty_objects.number_of_rooms',
             'config' => array(
                 'type' => 'input',
                 'size' => '2',
@@ -368,7 +368,7 @@ return [
         ),
         'living_area' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.living_area',
+            'label' => $ll . 'tx_realty_objects.living_area',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -377,7 +377,7 @@ return [
         ),
         'total_area' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.total_area',
+            'label' => $ll . 'tx_realty_objects.total_area',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -386,7 +386,7 @@ return [
         ),
         'shop_area' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.shop_area',
+            'label' => $ll . 'tx_realty_objects.shop_area',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -396,7 +396,7 @@ return [
         ),
         'sales_area' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.sales_area',
+            'label' => $ll . 'tx_realty_objects.sales_area',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -406,7 +406,7 @@ return [
         ),
         'total_usable_area' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.total_usable_area',
+            'label' => $ll . 'tx_realty_objects.total_usable_area',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -416,7 +416,7 @@ return [
         ),
         'storage_area' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.storage_area',
+            'label' => $ll . 'tx_realty_objects.storage_area',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -426,7 +426,7 @@ return [
         ),
         'office_space' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.office_space',
+            'label' => $ll . 'tx_realty_objects.office_space',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -436,7 +436,7 @@ return [
         ),
         'other_area' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.other_area',
+            'label' => $ll . 'tx_realty_objects.other_area',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -446,7 +446,7 @@ return [
         ),
         'window_bank' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.window_bank',
+            'label' => $ll . 'tx_realty_objects.window_bank',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -456,7 +456,7 @@ return [
         ),
         'estate_size' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.estate_size',
+            'label' => $ll . 'tx_realty_objects.estate_size',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -465,7 +465,7 @@ return [
         ),
         'site_occupancy_index' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.site_occupancy_index',
+            'label' => $ll . 'tx_realty_objects.site_occupancy_index',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -475,7 +475,7 @@ return [
         ),
         'floor_space_index' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.floor_space_index',
+            'label' => $ll . 'tx_realty_objects.floor_space_index',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -485,7 +485,7 @@ return [
         ),
         'rent_excluding_bills' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.rent_excluding_bills',
+            'label' => $ll . 'tx_realty_objects.rent_excluding_bills',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -494,7 +494,7 @@ return [
         ),
         'rent_per_square_meter' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.rent_per_square_meter',
+            'label' => $ll . 'tx_realty_objects.rent_per_square_meter',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -504,7 +504,7 @@ return [
         ),
         'extra_charges' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.extra_charges',
+            'label' => $ll . 'tx_realty_objects.extra_charges',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -513,14 +513,14 @@ return [
         ),
         'heating_included' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.heating_included',
+            'label' => $ll . 'tx_realty_objects.heating_included',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'deposit' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.deposit',
+            'label' => $ll . 'tx_realty_objects.deposit',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -529,7 +529,7 @@ return [
         ),
         'provision' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.provision',
+            'label' => $ll . 'tx_realty_objects.provision',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -538,7 +538,7 @@ return [
         ),
         'usable_from' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.usable_from',
+            'label' => $ll . 'tx_realty_objects.usable_from',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -547,7 +547,7 @@ return [
         ),
         'buying_price' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.buying_price',
+            'label' => $ll . 'tx_realty_objects.buying_price',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -556,7 +556,7 @@ return [
         ),
         'hoa_fee' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.hoa_fee',
+            'label' => $ll . 'tx_realty_objects.hoa_fee',
             'config' => array(
                 'type' => 'input',
                 'size' => '7',
@@ -565,7 +565,7 @@ return [
         ),
         'year_rent' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.year_rent',
+            'label' => $ll . 'tx_realty_objects.year_rent',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -574,7 +574,7 @@ return [
         ),
         'rental_income_target' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.rental_income_target',
+            'label' => $ll . 'tx_realty_objects.rental_income_target',
             'config' => array(
                 'type' => 'input',
                 'size' => '10',
@@ -583,7 +583,7 @@ return [
         ),
         'status' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.status',
+            'label' => $ll . 'tx_realty_objects.status',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -596,7 +596,7 @@ return [
         ),
         'apartment_type' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.apartment_type',
+            'label' => $ll . 'tx_realty_objects.apartment_type',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -638,7 +638,7 @@ return [
         ),
         'house_type' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.house_type',
+            'label' => $ll . 'tx_realty_objects.house_type',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -680,7 +680,7 @@ return [
         ),
         'floor' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.floor',
+            'label' => $ll . 'tx_realty_objects.floor',
             'config' => array(
                 'type' => 'input',
                 'size' => '2',
@@ -696,7 +696,7 @@ return [
         ),
         'floors' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.floors',
+            'label' => $ll . 'tx_realty_objects.floors',
             'config' => array(
                 'type' => 'input',
                 'size' => '2',
@@ -712,7 +712,7 @@ return [
         ),
         'bedrooms' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.bedrooms',
+            'label' => $ll . 'tx_realty_objects.bedrooms',
             'config' => array(
                 'type' => 'input',
                 'size' => '2',
@@ -728,7 +728,7 @@ return [
         ),
         'bathrooms' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.bathrooms',
+            'label' => $ll . 'tx_realty_objects.bathrooms',
             'config' => array(
                 'type' => 'input',
                 'size' => '2',
@@ -744,7 +744,7 @@ return [
         ),
         'heating_type' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.heating_type',
+            'label' => $ll . 'tx_realty_objects.heating_type',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -768,14 +768,14 @@ return [
         ),
         'has_air_conditioning' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.has_air_conditioning',
+            'label' => $ll . 'tx_realty_objects.has_air_conditioning',
             'config' => array(
                 'type' => 'check',
             )
         ),
         'garage_type' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.garage_type',
+            'label' => $ll . 'tx_realty_objects.garage_type',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -817,7 +817,7 @@ return [
         ),
         'parking_spaces' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.parking_spaces',
+            'label' => $ll . 'tx_realty_objects.parking_spaces',
             'config' => array(
                 'type' => 'input',
                 'size' => '3',
@@ -827,7 +827,7 @@ return [
         ),
         'garage_rent' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.garage_rent',
+            'label' => $ll . 'tx_realty_objects.garage_rent',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -836,7 +836,7 @@ return [
         ),
         'garage_price' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.garage_price',
+            'label' => $ll . 'tx_realty_objects.garage_price',
             'config' => array(
                 'type' => 'input',
                 'size' => '6',
@@ -845,7 +845,7 @@ return [
         ),
         'pets' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.pets',
+            'label' => $ll . 'tx_realty_objects.pets',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -887,7 +887,7 @@ return [
         ),
         'flooring' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.flooring',
+            'label' => $ll . 'tx_realty_objects.flooring',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -910,7 +910,7 @@ return [
         ),
         'construction_year' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.construction_year',
+            'label' => $ll . 'tx_realty_objects.construction_year',
             'config' => array(
                 'type' => 'input',
                 'size' => '4',
@@ -926,7 +926,7 @@ return [
         ),
         'old_or_new_building' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.old_or_new_building',
+            'label' => $ll . 'tx_realty_objects.old_or_new_building',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -938,7 +938,7 @@ return [
         ),
         'state' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.state',
+            'label' => $ll . 'tx_realty_objects.state',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -969,7 +969,7 @@ return [
         ),
         'furnishing_category' => array (
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.furnishing_category',
+            'label' => $ll . 'tx_realty_objects.furnishing_category',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -982,63 +982,63 @@ return [
         ),
         'balcony' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.balcony',
+            'label' => $ll . 'tx_realty_objects.balcony',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'garden' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.garden',
+            'label' => $ll . 'tx_realty_objects.garden',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'elevator' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.elevator',
+            'label' => $ll . 'tx_realty_objects.elevator',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'barrier_free' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.barrier_free',
+            'label' => $ll . 'tx_realty_objects.barrier_free',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'assisted_living' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.assisted_living',
+            'label' => $ll . 'tx_realty_objects.assisted_living',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'fitted_kitchen' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.fitted_kitchen',
+            'label' => $ll . 'tx_realty_objects.fitted_kitchen',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'has_pool' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.has_pool',
+            'label' => $ll . 'tx_realty_objects.has_pool',
             'config' => array(
                 'type' => 'check',
             )
         ),
         'has_community_pool' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.has_community_pool',
+            'label' => $ll . 'tx_realty_objects.has_community_pool',
             'config' => array(
                 'type' => 'check',
             )
         ),
         'teaser' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.teaser',
+            'label' => $ll . 'tx_realty_objects.teaser',
             'config' => array(
                 'type' => 'text',
                 'cols' => '20',
@@ -1047,7 +1047,7 @@ return [
         ),
         'description' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.description',
+            'label' => $ll . 'tx_realty_objects.description',
             'config' => array(
                 'type' => 'text',
                 'cols' => '30',
@@ -1056,7 +1056,7 @@ return [
         ),
         'equipment' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.equipment',
+            'label' => $ll . 'tx_realty_objects.equipment',
             'config' => array(
                 'type' => 'text',
                 'cols' => '30',
@@ -1065,7 +1065,7 @@ return [
         ),
         'layout' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.layout',
+            'label' => $ll . 'tx_realty_objects.layout',
             'config' => array(
                 'type' => 'text',
                 'cols' => '30',
@@ -1074,7 +1074,7 @@ return [
         ),
         'location' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.location',
+            'label' => $ll . 'tx_realty_objects.location',
             'config' => array(
                 'type' => 'text',
                 'cols' => '30',
@@ -1083,7 +1083,7 @@ return [
         ),
         'misc' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.misc',
+            'label' => $ll . 'tx_realty_objects.misc',
             'config' => array(
                 'type' => 'text',
                 'cols' => '30',
@@ -1092,7 +1092,7 @@ return [
         ),
         'details_page' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.details_page',
+            'label' => $ll . 'tx_realty_objects.details_page',
             'config' => array(
                 'type' => 'input',
                 'size' => '15',
@@ -1118,7 +1118,7 @@ return [
         ),
         'images' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.images',
+            'label' => $ll . 'tx_realty_objects.images',
             'config' => array(
                 'type'=> 'inline',
                 'foreign_table' => 'tx_realty_images',
@@ -1136,7 +1136,7 @@ return [
         ),
         'documents' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.documents',
+            'label' => $ll . 'tx_realty_objects.documents',
             'config' => array(
                 'type'=> 'inline',
                 'foreign_table' => 'tx_realty_documents',
@@ -1154,7 +1154,7 @@ return [
         ),
         'employer' => array (
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.employer',
+            'label' => $ll . 'tx_realty_objects.employer',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -1163,7 +1163,7 @@ return [
         ),
         'openimmo_anid' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.openimmo_anid',
+            'label' => $ll . 'tx_realty_objects.openimmo_anid',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -1172,7 +1172,7 @@ return [
         ),
         'openimmo_obid' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.openimmo_obid',
+            'label' => $ll . 'tx_realty_objects.openimmo_obid',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -1181,7 +1181,7 @@ return [
         ),
         'utilization' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.utilization',
+            'label' => $ll . 'tx_realty_objects.utilization',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -1190,7 +1190,7 @@ return [
         ),
         'contact_data_source' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.contact_data_source',
+            'label' => $ll . 'tx_realty_objects.contact_data_source',
             'config' => array(
                 'type' => 'radio',
                 'items' => array(
@@ -1201,7 +1201,7 @@ return [
         ),
         'contact_person' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.contact_person',
+            'label' => $ll . 'tx_realty_objects.contact_person',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -1210,7 +1210,7 @@ return [
         ),
         'contact_person_first_name' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.contact_person_first_name',
+            'label' => $ll . 'tx_realty_objects.contact_person_first_name',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -1219,7 +1219,7 @@ return [
         ),
         'contact_person_salutation' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.contact_person_salutation',
+            'label' => $ll . 'tx_realty_objects.contact_person_salutation',
             'config' => array(
                 'type' => 'input',
                 'size' => '5',
@@ -1228,7 +1228,7 @@ return [
         ),
         'contact_email' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.contact_email',
+            'label' => $ll . 'tx_realty_objects.contact_email',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -1237,7 +1237,7 @@ return [
         ),
         'phone_switchboard' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.phone_switchboard',
+            'label' => $ll . 'tx_realty_objects.phone_switchboard',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -1246,7 +1246,7 @@ return [
         ),
         'phone_direct_extension' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.phone_direct_extension',
+            'label' => $ll . 'tx_realty_objects.phone_direct_extension',
             'config' => array(
                 'type' => 'input',
                 'size' => '30',
@@ -1255,7 +1255,7 @@ return [
         ),
         'owner' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.owner',
+            'label' => $ll . 'tx_realty_objects.owner',
             'config' => array(
                 'type' => 'group',
                 'internal_type' => 'db',
@@ -1267,7 +1267,7 @@ return [
         ),
         'language' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.language',
+            'label' => $ll . 'tx_realty_objects.language',
             'config' => array(
                 'type' => 'input',
                 'size' => 5,
@@ -1276,7 +1276,7 @@ return [
         ),
         'currency' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.currency',
+            'label' => $ll . 'tx_realty_objects.currency',
             'config' => array(
                 'type' => 'input',
                 'size' => 10,
@@ -1285,7 +1285,7 @@ return [
         ),
         'advertised_date' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.advertised_date',
+            'label' => $ll . 'tx_realty_objects.advertised_date',
             'config' => array(
                 'type' => 'input',
                 'size' => '10',
@@ -1297,7 +1297,7 @@ return [
         ),
         'energy_certificate_type' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.energy_certificate_type',
+            'label' => $ll . 'tx_realty_objects.energy_certificate_type',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -1309,7 +1309,7 @@ return [
         ),
         'energy_certificate_valid_until' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.energy_certificate_valid_until',
+            'label' => $ll . 'tx_realty_objects.energy_certificate_valid_until',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1318,7 +1318,7 @@ return [
         ),
         'energy_consumption_characteristic' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.energy_consumption_characteristic',
+            'label' => $ll . 'tx_realty_objects.energy_consumption_characteristic',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1327,7 +1327,7 @@ return [
         ),
         'with_hot_water' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.with_hot_water',
+            'label' => $ll . 'tx_realty_objects.with_hot_water',
             'config' => array(
                 'type' => 'check',
                 'default' => '0',
@@ -1335,7 +1335,7 @@ return [
         ),
         'ultimate_energy_demand' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.ultimate_energy_demand',
+            'label' => $ll . 'tx_realty_objects.ultimate_energy_demand',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1344,7 +1344,7 @@ return [
         ),
         'primary_energy_carrier' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.primary_energy_carrier',
+            'label' => $ll . 'tx_realty_objects.primary_energy_carrier',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1353,7 +1353,7 @@ return [
         ),
         'electric_power_consumption_characteristic' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.electric_power_consumption_characteristic',
+            'label' => $ll . 'tx_realty_objects.electric_power_consumption_characteristic',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1362,7 +1362,7 @@ return [
         ),
         'heat_energy_consumption_characteristic' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.heat_energy_consumption_characteristic',
+            'label' => $ll . 'tx_realty_objects.heat_energy_consumption_characteristic',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1371,7 +1371,7 @@ return [
         ),
         'value_category' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.value_category',
+            'label' => $ll . 'tx_realty_objects.value_category',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1380,7 +1380,7 @@ return [
         ),
         'year_of_construction' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.year_of_construction',
+            'label' => $ll . 'tx_realty_objects.year_of_construction',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1389,7 +1389,7 @@ return [
         ),
         'energy_certificate_issue_date' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.energy_certificate_issue_date',
+            'label' => $ll . 'tx_realty_objects.energy_certificate_issue_date',
             'config' => array(
                 'type' => 'input',
                 'size' => '8',
@@ -1401,7 +1401,7 @@ return [
         ),
         'energy_certificate_year' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.energy_certificate_year',
+            'label' => $ll . 'tx_realty_objects.energy_certificate_year',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -1415,7 +1415,7 @@ return [
         ),
         'building_type' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.building_type',
+            'label' => $ll . 'tx_realty_objects.building_type',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
@@ -1427,7 +1427,7 @@ return [
         ),
         'energy_certificate_text' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.energy_certificate_text',
+            'label' => $ll . 'tx_realty_objects.energy_certificate_text',
             'config' => array(
                 'type' => 'text',
                 'cols' => '30',
@@ -1436,7 +1436,7 @@ return [
         ),
         'heat_energy_requirement_value' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.heat_energy_requirement_value',
+            'label' => $ll . 'tx_realty_objects.heat_energy_requirement_value',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1445,7 +1445,7 @@ return [
         ),
         'heat_energy_requirement_class' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.heat_energy_requirement_class',
+            'label' => $ll . 'tx_realty_objects.heat_energy_requirement_class',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1454,7 +1454,7 @@ return [
         ),
         'total_energy_efficiency_value' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.total_energy_efficiency_value',
+            'label' => $ll . 'tx_realty_objects.total_energy_efficiency_value',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,
@@ -1463,7 +1463,7 @@ return [
         ),
         'total_energy_efficiency_class' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_objects.total_energy_efficiency_class',
+            'label' => $ll . 'tx_realty_objects.total_energy_efficiency_class',
             'config' => array(
                 'type' => 'input',
                 'size' => 40,

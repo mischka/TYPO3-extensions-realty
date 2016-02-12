@@ -3,11 +3,11 @@
 $extPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('realty');
 $extRelPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('realty');
 $extIconRelPath = $extRelPath . 'icons/';
-$ll = 'LLL:EXT:realty/locallang_db.xml';
+$ll = 'LLL:EXT:realty/locallang_db.xml:';
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_cities',
+        'title' => $ll . 'tx_realty_cities',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -62,7 +62,7 @@ return [
         ],
         'title' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_cities.title',
+            'label' => $ll . 'tx_realty_cities.title',
             'config' => [
                 'type' => 'input',
                 'size' => '30',
@@ -71,7 +71,7 @@ return [
         ],
         'save_folder' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:realty/locallang_db.xml:tx_realty_cities.save_folder',
+            'label' => $ll . 'tx_realty_cities.save_folder',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'db',
