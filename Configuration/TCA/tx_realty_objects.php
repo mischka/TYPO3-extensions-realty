@@ -4,6 +4,8 @@ $extPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('realty')
 $extRelPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('realty');
 $extIconRelPath = $extRelPath . 'icons/';
 $ll = 'LLL:EXT:realty/locallang_db.xml:';
+// Extension manager configuration
+$configuration = \OliverKlee\Realty\Utility\EmConfiguration::getSettings();
 
 return [
     'ctrl' => array(
@@ -212,7 +214,7 @@ return [
             'config' => array(
                 'type' => 'select',
                 'foreign_table' => 'tx_realty_cities',
-                'foreign_table_where' => 'AND tx_realty_cities.pid=###STORAGE_PID### ORDER BY tx_realty_cities.title',
+                'foreign_table_where' => 'AND tx_realty_cities.pid=' . $configuration->getCitiesPid() . ' ORDER BY tx_realty_cities.title',
                 'size' => 1,
                 'minitems' => 1,
                 'maxitems' => 1,
@@ -225,7 +227,7 @@ return [
                         'icon' => 'add.gif',
                         'params' => array(
                             'table'=>'tx_realty_cities',
-                            'pid' => '###STORAGE_PID###',
+                            'pid' => $configuration->getCitiesPid(),
                             'setValue' => 'prepend',
                         ),
                         'module' => array(
@@ -264,7 +266,7 @@ return [
                         'icon' => 'add.gif',
                         'params' => array(
                             'table'=>'tx_realty_districts',
-                            'pid' => '###STORAGE_PID###',
+                            'pid' => $configuration->getDistrictsPid(),
                             'setValue' => 'prepend',
                         ),
                         'module' => array(
@@ -603,7 +605,7 @@ return [
                     array('', 0)
                 ),
                 'foreign_table' => 'tx_realty_apartment_types',
-                'foreign_table_where' => 'AND tx_realty_apartment_types.pid=###STORAGE_PID### ORDER BY tx_realty_apartment_types.title',
+                'foreign_table_where' => 'AND tx_realty_apartment_types.pid=' . $configuration->getApartmentTypesPid() . ' ORDER BY tx_realty_apartment_types.title',
                 'size' => 1,
                 'minitems' => 0,
                 'maxitems' => 1,
@@ -616,7 +618,7 @@ return [
                         'icon' => 'add.gif',
                         'params' => array(
                             'table'=>'tx_realty_apartment_types',
-                            'pid' => '###STORAGE_PID###',
+                            'pid' => $configuration->getApartmentTypesPid(),
                             'setValue' => 'prepend',
                         ),
                         'module' => array(
@@ -645,7 +647,7 @@ return [
                     array('', 0),
                 ),
                 'foreign_table' => 'tx_realty_house_types',
-                'foreign_table_where' => 'AND tx_realty_house_types.pid=###STORAGE_PID### ORDER BY tx_realty_house_types.title',
+                'foreign_table_where' => 'AND tx_realty_house_types.pid=' . $configuration->getHouseTypesPid() . ' ORDER BY tx_realty_house_types.title',
                 'size' => 1,
                 'minitems' => 0,
                 'maxitems' => 1,
@@ -658,7 +660,7 @@ return [
                         'icon' => 'add.gif',
                         'params' => array(
                             'table'=>'tx_realty_house_types',
-                            'pid' => '###STORAGE_PID###',
+                            'pid' => $configuration->getHouseTypesPid(),
                             'setValue' => 'prepend',
                         ),
                         'module' => array(
@@ -782,7 +784,7 @@ return [
                     array('', 0),
                 ),
                 'foreign_table' => 'tx_realty_car_places',
-                'foreign_table_where' => 'AND tx_realty_car_places.pid=###STORAGE_PID### ORDER BY tx_realty_car_places.title',
+                'foreign_table_where' => 'AND tx_realty_car_places.pid=' . $configuration->getCarPlacesPid() . ' ORDER BY tx_realty_car_places.title',
                 'size' => 1,
                 'minitems' => 0,
                 'maxitems' => 1,
@@ -795,7 +797,7 @@ return [
                         'icon' => 'add.gif',
                         'params' => array(
                             'table'=>'tx_realty_car_places',
-                            'pid' => '###STORAGE_PID###',
+                            'pid' => $configuration->getCarPlacesPid(),
                             'setValue' => 'prepend',
                         ),
                         'module' => array(
@@ -852,7 +854,7 @@ return [
                     array('', 0),
                 ),
                 'foreign_table' => 'tx_realty_pets',
-                'foreign_table_where' => 'AND tx_realty_pets.pid=###STORAGE_PID### ORDER BY tx_realty_pets.title',
+                'foreign_table_where' => 'AND tx_realty_pets.pid=' . $configuration->getPetsPid() . ' ORDER BY tx_realty_pets.title',
                 'size' => 1,
                 'minitems' => 0,
                 'maxitems' => 1,
@@ -865,7 +867,7 @@ return [
                         'icon' => 'add.gif',
                         'params' => array(
                             'table'=>'tx_realty_pets',
-                            'pid' => '###STORAGE_PID###',
+                            'pid' => $configuration->getPetsPid(),
                             'setValue' => 'prepend',
                         ),
                         'module' => array(

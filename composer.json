@@ -30,6 +30,7 @@
     "phpunit/phpunit": "~4.8.0"
   },
   "autoload": {
+    "OliverKlee\\Realty\\": "Classes",
     "classmap": ["Ajax", "BackEnd", "cli", "lib", "Mapper", "Model", "pi1"],
     "files": ["class.tx_realty_Tca.php"]
   },
